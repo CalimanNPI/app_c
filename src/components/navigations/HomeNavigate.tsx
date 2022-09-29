@@ -16,21 +16,7 @@ const NavigationHome = () => {
         options={() => ({
           title: "CENTRO DEPORTIVO COYOACÁN A.C.",
           headerTitleAlign: "center",
-          headerShadowVisible: false,
-          headerStyle: {
-            backgroundColor: "#F2F2F7",
-          },
-          headerTitleStyle: {
-            fontFamily: "SpaceMono_700Bold",
-            color: "#FF3B30",
-            fontSize: 14,
-          },
-          headerLeft: () => (
-            <Image
-              source={require("../../../assets/coyi/CDCrojo.png")}
-              style={{ width: 30, height: 30, resizeMode: "contain" }}
-            />
-          ),
+         headerShown: false, 
         })}
       />
       <Stack.Screen

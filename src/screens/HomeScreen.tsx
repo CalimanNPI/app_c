@@ -19,11 +19,6 @@ import {
 } from "react-native";
 
 import { LinearGradient } from "expo-linear-gradient";
-import BottomSheet, {
-  BottomSheetView,
-  BottomSheetModal,
-  BottomSheetModalProvider,
-} from "@gorhom/bottom-sheet";
 
 import Layout from "../components/Layout";
 import PublicityList from "../components/publications/PublicityList";
@@ -56,75 +51,37 @@ const HomeScreen = ({ navigation }: any) => {
     getPu();
   }, []);
 
-  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
-
-  // variables
-  const snapPoints = useMemo(() => ["1%", "25%", "50%"], []);
-
-  // callbacks
-  const handlePresentModalPress = useCallback(() => {
-    bottomSheetModalRef.current?.present();
-  }, []);
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log("handleSheetChanges", index);
-  }, []);
-
   return (
-    <BottomSheetModalProvider>
-      <Layout>
-        <ScrollView
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
-          refreshControl={
-            <RefreshControl
-              refreshing={refreshing}
-              onRefresh={onRefresh}
-              colors={["#FF3B30"]}
-              progressBackgroundColor={"#F2F2F7"}
-            />
-          }
-          style={styles.content}
-        >
-          <View style={styles.imageContent}>
-            <Image
-              source={require("../../assets/coyi/Panorama_CDC.png")}
-              resizeMode="cover"
-              style={{ width: "100%", height: 295 }}
-            />
-          </View>
-
-          <LinearGradient
-            colors={["#f2f2f7", "#f2f2f7", "#f2f2f7"]}
-            style={styles.bodyContend}
-          >
-            <ButtomMenu />
-            <PublicityList item={publicitys} />
-          </LinearGradient>
-
-          <Button
-            onPress={handlePresentModalPress}
-            title="Present Modal"
-            color="black"
+    <Layout>
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={["#FF3B30"]}
+            progressBackgroundColor={"#F2F2F7"}
           />
-        </ScrollView>
+        }
+        style={styles.content}
+      >
+        <View style={styles.imageContent}>
+          <Image
+            source={require("../../assets/coyi/Panorama_CDC.png")}
+            resizeMode="cover"
+            style={{ width: "100%", height: 295 }}
+          />
+        </View>
 
-        <BottomSheetModal
-          ref={bottomSheetModalRef}
-          index={1}
-          snapPoints={snapPoints}
-          onChange={handleSheetChanges}
+        <LinearGradient
+          colors={["#f2f2f7", "#f2f2f7", "#f2f2f7"]}
+          style={styles.bodyContend}
         >
-          <View style={styles.contentContainer}>
-            <Button
-              onPress={handlePresentModalPress}
-              title="Present Modal"
-              color="black"
-            />
-            <Text>Awesome 🎉</Text>
-          </View>
-        </BottomSheetModal>
-      </Layout>
-    </BottomSheetModalProvider>
+          <PublicityList item={publicitys} />
+        </LinearGradient>
+      </ScrollView>
+    </Layout>
   );
 };
 
@@ -177,10 +134,6 @@ const styles = StyleSheet.create({
     padding: 24,
     justifyContent: "center",
     backgroundColor: "white",
-  },
-  contentContainer: {
-    flex: 1,
-    alignItems: "center",
   },
 });
 
