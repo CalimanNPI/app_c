@@ -1,9 +1,8 @@
-import React, { useCallback, useMemo, useRef } from "react";
-import { Button, Image, View } from "react-native";
+import React, { useCallback, useMemo, useRef, useState } from "react";
+import { Button, Image, Text, TouchableOpacity, View } from "react-native";
 import { FontAwesome, AntDesign } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import BottomSheet, {
-  BottomSheetView,
+import {
   BottomSheetModal,
   BottomSheetModalProvider,
 } from "@gorhom/bottom-sheet";
@@ -19,6 +18,7 @@ const Tab = createBottomTabNavigator();
 
 const BottomNavigate = () => {
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   // variables
   const snapPoints = useMemo(() => ["30%", "60%", "90%"], []);
@@ -89,6 +89,14 @@ const BottomNavigate = () => {
                 }}
               />
             ),
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={handlePresentModalPress}
+                style={{ marginRight: 17 }}
+              >
+                <FontAwesome name={"bars"} size={24} color="#8E8E93" />
+              </TouchableOpacity>
+            ),
           })}
         />
         <Tab.Screen
@@ -116,6 +124,14 @@ const BottomNavigate = () => {
                   marginLeft: 17,
                 }}
               />
+            ),
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={handlePresentModalPress}
+                style={{ marginRight: 17 }}
+              >
+                <FontAwesome name={"bars"} size={24} color="#8E8E93" />
+              </TouchableOpacity>
             ),
           })}
         />
@@ -145,6 +161,14 @@ const BottomNavigate = () => {
                 }}
               />
             ),
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={handlePresentModalPress}
+                style={{ marginRight: 17 }}
+              >
+                <FontAwesome name={"bars"} size={24} color="#8E8E93" />
+              </TouchableOpacity>
+            ),
           })}
         />
         <Tab.Screen
@@ -173,6 +197,14 @@ const BottomNavigate = () => {
                 }}
               />
             ),
+            headerRight: () => (
+              <TouchableOpacity
+                onPress={handlePresentModalPress}
+                style={{ marginRight: 17 }}
+              >
+                <FontAwesome name={"bars"} size={24} color="#8E8E93" />
+              </TouchableOpacity>
+            ),
           })}
         />
         <Tab.Screen
@@ -188,12 +220,6 @@ const BottomNavigate = () => {
           })}
         />
       </Tab.Navigator>
-      <Button
-        onPress={handlePresentModalPress}
-        title="Present Modal"
-        color="black"
-      />
-
       <BottomSheetModal
         ref={bottomSheetModalRef}
         index={1}

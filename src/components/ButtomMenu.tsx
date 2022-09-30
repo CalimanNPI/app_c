@@ -8,93 +8,88 @@ import {
   FlatList,
   Image,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const menu = [
   {
     id: "1",
     image: require("../../assets/Onboarding/Inicio-1.png"),
     title: "Actividades",
-    route: "Galery",
+    route: "ActividadesScreen",
   },
   {
     id: "2",
     image: require("../../assets/Onboarding/Inicio-1.png"),
     title: "Instalaciones",
-    route: "Galery",
+    route: "InstalacionesScreen",
   },
   {
     id: "3",
     image: require("../../assets/Onboarding/Inicio-1.png"),
     title: "Cafetería",
-    route: "Galery",
+    route: "CafeteriaScreen",
   },
   {
     id: "4",
     image: require("../../assets/Onboarding/Inicio-1.png"),
     title: "Cuotas",
-    route: "Galery",
+    route: "CuotasScreen",
   },
   {
     id: "5",
     image: require("../../assets/Onboarding/Inicio-2.png"),
     title: "Horarios",
-    route: "Galery",
-  },
-  {
-    id: "6",
-    image: require("../../assets/Onboarding/Inicio-2.png"),
-    title: "Contacto",
-    route: "Galery",
+    route: "HorariosScreen",
   },
   {
     id: "7",
     image: require("../../assets/Onboarding/Inicio-2.png"),
-    title: "Increase",
-    route: "Reglamentos",
+    title: "Instalaciones",
+    route: "ReglamentoScreen",
   },
   {
     id: "8",
     image: require("../../assets/Onboarding/Inicio-2.png"),
     title: "Historia",
-    route: "Galery",
+    route: "AboutScreen",
   },
 ];
 
 const ButtomMenu = () => {
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={{ marginTop: 20, marginHorizontal: 15 }}>
       <FlatList
         data={menu}
         keyExtractor={(item) => item.id}
         numColumns={4}
-        renderItem={RenderButtom}
+        renderItem={({ item }: any) => {
+          return (
+            <TouchableOpacity
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+                margin: 5,
+              }}
+              onPress={() => navigation.navigate(item.route)}
+            >
+              <View style={{ backgroundColor: "#D8D8DC", borderRadius: 20 }}>
+                <Image
+                  style={{
+                    width: 70,
+                    height: 70,
+                  }}
+                  source={item.image}
+                />
+              </View>
+              <Text style={styles.textTitle}>{item.title}</Text>
+            </TouchableOpacity>
+          );
+        }}
       />
     </SafeAreaView>
-  );
-};
-
-const RenderButtom = ({ item }: any) => {
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        margin: 5,
-      }}
-    >
-      <View style={{ backgroundColor: "#D8D8DC", borderRadius: 20 }}>
-        <Image
-          style={{
-            width: 70,
-            height: 70,
-          }}
-          source={item.image}
-        />
-      </View>
-      <Text style={styles.textTitle}>{item.title}</Text>
-    </View>
   );
 };
 
@@ -107,4 +102,5 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
 });
+
 export default ButtomMenu;

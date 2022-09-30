@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 import { FontAwesome } from "@expo/vector-icons";
 
-import ModalViewDesc from "./ModalViewDesc";
+import ModalViewDesc from "../ModalDescView";
 
 const NotifyItem = ({ item }: any) => {
   const [modalVisible, setModalVisible] = useState(false);
