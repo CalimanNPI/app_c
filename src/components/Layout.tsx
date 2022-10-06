@@ -1,18 +1,18 @@
 import React from "react";
-import { View, StatusBar, StyleSheet } from "react-native";
+import { View, StatusBar, StyleSheet, SafeAreaView } from "react-native";
 
 const Layout = ({ children }: any) => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={"#FF3B30"} />
       {children}
-    </View>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F2F2F7",
+    backgroundColor: "rgba(142, 142, 147, 0.3)",
     alignItems: "center",
     justifyContent: "center",
   },

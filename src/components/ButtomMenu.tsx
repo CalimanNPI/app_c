@@ -44,7 +44,7 @@ const menu = [
   {
     id: "7",
     image: require("../../assets/Onboarding/Inicio-2.png"),
-    title: "Instalaciones",
+    title: "Reglamentos",
     route: "ReglamentoScreen",
   },
   {

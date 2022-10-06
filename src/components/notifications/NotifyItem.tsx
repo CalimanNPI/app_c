@@ -10,7 +10,7 @@ const NotifyItem = ({ item }: any) => {
 
   return (
     <>
-    <View style={styles.lineStyle}></View>
+    <View style={styles.lineStyle}/>
       {item.isSend && item.title && (
         <TouchableOpacity
           onPress={() =>
@@ -47,12 +47,7 @@ const NotifyItem = ({ item }: any) => {
 };
 
 const styles = StyleSheet.create({
-  lineStyle: {
-    borderWidth: 8,
-    borderColor: "rgba(229,229,234, 0.9)",
-    backgroundColor: "rgba(229,229,234, 0.9)",
-    marginVertical: 5,
-  },
+
   /**Card N*/
   card: {
     width: "100%",
@@ -60,6 +55,8 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#F2F2F7", 
+    marginVertical: 8
   },
   distributor: {
     width: "80%",

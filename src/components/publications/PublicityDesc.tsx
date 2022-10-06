@@ -1,7 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
-import { View, Text, SafeAreaView, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+} from "react-native";
 
-import Animated from "react-native-reanimated";
 import { getPublicityDesc } from "../../api/api";
 import Layout from "../Layout";
 import ImageZoom from "../ImageZoom";
@@ -29,61 +33,78 @@ const PublicityDesc = ({ route }: any) => {
 
 const PublicityItemDesc = ({ item }: any) => {
   return (
-    <SafeAreaView>
-      <Animated.FlatList
-        scrollEventThrottle={16}
-        data={item}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        keyExtractor={(item: any) => item._id}
-        renderItem={renderItem}
-      />
-    </SafeAreaView>
+    <FlatList
+      scrollEventThrottle={16}
+      data={item}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      keyExtractor={(item: any) => item._id}
+      renderItem={renderItem}
+    />
   );
 };
 
-const renderItem = ({ item, route }: any) => {
+const renderItem = ({ item }: any) => {
   return (
-    <View style={{ marginVertical: 20 }}>
-      <View
-        style={{
-          width: "100%",
-          height: 200,
-          zIndex: 2,
-        }}
-      >
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>{item.title}</Text>
+      </View>
+      <View style={styles.postContent}>
+        <Text style={styles.postTitle}>{item.body}</Text>
+      </View>
+      <View style={styles.profile}>
         <ImageZoom image={item.img_url} />
       </View>
-      <View style={styles.lineStyle}></View>
-      <Text style={styles.textTitle}>{item.title}</Text>
-      <View style={styles.lineStyle}></View>
-      <Text style={styles.textText}>{item.body}</Text>
-      <Text style={styles.textText}>{item.description}</Text>
-      <View style={styles.lineStyle}></View>
+      <View style={styles.postContent}>
+        <Text style={styles.postDescription}>{item.description}</Text>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  lineStyle: {
-    borderWidth: 5,
-    borderColor: "rgba(229,229,234, 0.9)",
-    backgroundColor: "rgba(229,229,234, 0.9)",
-    marginVertical: 5,
+  container: {
+    flex: 1,
   },
-  textTitle: {
+  header: {
+    padding: 30,
+    alignItems: "center",
+    backgroundColor: "#FF3B30",
+  },
+  headerTitle: {
+    fontSize: 30,
+    color: "#F2F2F7",
+    marginTop: 10,
     fontFamily: "SpaceMono_700Bold",
-    color: "#8E8E93",
-    fontSize: 35,
-    textAlign: "center",
-    margin: 20,
   },
-  textText: {
-    fontFamily: "SpaceMono_400Regular",
+  name: {
+    fontSize: 22,
     color: "#8E8E93",
-    fontSize: 14,
-    textAlign: "justify",
-    margin: 20,
+    fontFamily: "SpaceMono_700Bold",
+  },
+  postContent: {
+    flex: 1,
+    padding: 30,
+    backgroundColor: "#F2F2F7",
+    marginVertical: 10,
+  },
+  postTitle: {
+    fontSize: 20,
+    color: "#8E8E93",
+    fontFamily: "SpaceMono_700Bold",
+  },
+  postDescription: {
+    color: "#8E8E93",
+    fontSize: 16,
+    marginTop: 10,
+    fontFamily: "SpaceMono_700Bold",
+  },
+  profile: {
+    width: "100%",
+    height: 200,
+    zIndex: 2,
+    marginBottom: 10,
   },
 });
 

@@ -171,7 +171,12 @@ const LocationScreen = () => {
         </View>
       </View>
 
-      <View style={[styles.containerMap, { bottom: 0, zIndex: 1 }]}>
+      <View
+        style={[
+          styles.containerMap,
+          { bottom: 0, zIndex: 1, marginBottom: 5 },
+        ]}
+      >
         <MapView
           initialRegion={{
             latitude: 19.361687934069835,

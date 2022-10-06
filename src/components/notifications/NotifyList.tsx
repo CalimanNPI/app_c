@@ -36,8 +36,6 @@ const NotifyList = () => {
       {/*<Button onPress={setPublicity} title="enviar publi" />*/}
       <FlatList
         data={notifications}
-        scrollEnabled
-        showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         inverted={true}
         renderItem={renderItem}
