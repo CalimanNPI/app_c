@@ -55,18 +55,17 @@ const AboutScreen = () => {
 
           {items.map((item) => {
             return (
-              <View style={styles.containerItem}>
+              <View style={styles.containerItem} key={item["id"]}>
                 <Image
                   style={styles.image}
                   source={{
-                    uri: item.image,
+                    uri: item["image"],
                   }}
                 />
 
                 <View style={styles.content}>
                   <View style={styles.contentHeader}>
                     <Text style={[styles.textText, { color: "#FF3B30" }]}>
-                      {" "}
                       {item["title"]}
                     </Text>
                   </View>

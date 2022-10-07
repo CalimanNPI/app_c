@@ -1,12 +1,9 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
+import LoginScreen from "./perfilscreen/LoginScreen";
 
 const PerfilScreen = () => {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text style={styles.textTitle}>Perfil Screen</Text>
-    </View>
-  );
+  return <LoginScreen />;
 };
 
 const styles = StyleSheet.create({

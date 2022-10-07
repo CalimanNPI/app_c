@@ -23,7 +23,6 @@ import { LinearGradient } from "expo-linear-gradient";
 import Layout from "../components/Layout";
 import PublicityList from "../components/publications/PublicityList";
 import { getPublicity } from "../api/api";
-import ButtomMenu from "../components/ButtomMenu";
 
 const { width, height } = Dimensions.get("window");
 var box_count = 3;

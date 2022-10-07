@@ -7,8 +7,8 @@ import {
   Modal,
   Image,
   ScrollView,
+  StatusBar,
 } from "react-native";
-
 import { AntDesign } from "@expo/vector-icons";
 
 const ModalViewDesc = ({
@@ -25,6 +25,7 @@ const ModalViewDesc = ({
       visible={modalVisible}
       onRequestClose={() => setModalVisible(true)}
     >
+       {modalVisible ? <StatusBar backgroundColor={"rgba(255, 59, 48, 0.4)"}/> : <StatusBar backgroundColor={"rgba(255, 59, 48, 0.9)"}/>}
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <TouchableOpacity
@@ -70,7 +71,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
   },
   modalView: {
     width: "100%",
@@ -78,12 +78,10 @@ const styles = StyleSheet.create({
     position: "relative",
     bottom: 0,
     margin: 20,
-    backgroundColor: "white",
-    borderTopStartRadius: 20,
-    borderTopEndRadius: 20,
+    backgroundColor: "#F2F2F7",
     padding: 35,
     alignItems: "center",
-    shadowColor: "#000",
+    shadowColor: "#8E8E93",
     shadowOffset: {
       width: 0,
       height: 2,

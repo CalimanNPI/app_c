@@ -63,6 +63,7 @@ const renderItem = ({ item }: any) => {
             <Text style={styles.textText}>{item.desc}</Text>
           </View>
         </View>
+      <View style={[StyleSheet.absoluteFillObject, styles.itemOverlay]} />
       </View>
     </TouchableOpacity>
   );
@@ -88,6 +89,9 @@ const CafeteriaScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  itemOverlay: {
+    backgroundColor: "rgba(0, 0, 0, 0.15)",
+  },
   separator: {
     marginTop: 1,
   },

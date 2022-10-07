@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  FlatList,
   StyleSheet,
   ScrollView,
   Image,
   TouchableOpacity,
-  Modal,
 } from "react-native";
 import Layout from "../Layout";
+import ModalCarousel from "../ModalCarousel";
 
 const InstalacioneDesc = ({ route }: any) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const images = route.params.images;
 
   return (
     <ScrollView>
@@ -29,53 +29,46 @@ const InstalacioneDesc = ({ route }: any) => {
               {route.params.desc}
             </Text>
           </View>
-          <FlatList
-            data={route.params.images}
-            horizontal={false}
-            numColumns={2}
-            scrollEnabled={false}
-            ItemSeparatorComponent={() => {
-              return <View style={styles.separator} />;
-            }}
-            renderItem={({ item }) => {
-              return (
-                <TouchableOpacity
-                  style={styles.card}
-                  onPress={() => setIsVisible(true)}
-                >
-                  <View style={styles.imageContainer}>
-                    <Image
-                      style={styles.cardImage}
-                      source={{ uri: item.img }}
-                    />
-                  </View>
-
-                  <Modal
-                    animationType="slide"
-                    transparent={true}
-                    visible={isVisible}
-                    onRequestClose={() => setIsVisible(true)}
+          <View style={styles.row}>
+            {images.map((value: any, index: number) => {
+              if (index < 2) {
+                return (
+                  <TouchableOpacity
+                    onPress={() => setModalVisible(true)}
+                    style={[styles.imageContent, styles.imageContent1]}
+                    key={value["id"]}
                   >
-                    <View style={styles.centeredView}>
-                      <View style={styles.modalView}>
-                        <TouchableOpacity
-                          onPress={() => setIsVisible(false)}
-                          style={styles.buttomCloaseModal}
-                        >
-                        <Text>X</Text>
-                        </TouchableOpacity>
-                        <Image
-                          source={{ uri: item.img }}
-                          style={{ width: 150, height: 150 }}
-                        />
-                      </View>
-                    </View>
-                  </Modal>
-                </TouchableOpacity>
-              );
-            }}
-          />
+                    <Image
+                      style={styles.image}
+                      source={{ uri: value["image"] }}
+                    />
+                  </TouchableOpacity>
+                );
+              }
+            })}
+
+            <TouchableOpacity
+              onPress={() => setModalVisible(true)}
+              style={[styles.imageContent, styles.imageContent1]}
+            >
+              <Image
+                style={styles.image}
+                source={{ uri: images[2]["image"] }}
+              />
+              <View style={styles.overlayContent}>
+                <View>
+                  <Text style={styles.count}>+{images.length - 2}</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+          </View>
         </View>
+
+        <ModalCarousel
+          images={images}
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+        />
       </Layout>
     </ScrollView>
   );
@@ -110,10 +103,10 @@ const styles = StyleSheet.create({
   },
 
   card: {
-    marginVertical: 8,
+    marginVertical: 2,
     backgroundColor: "white",
     flexBasis: "45%",
-    marginHorizontal: 10,
+    marginHorizontal: 5,
   },
   cardContent: {
     paddingVertical: 17,
@@ -121,7 +114,7 @@ const styles = StyleSheet.create({
   },
   cardImage: {
     flex: 1,
-    height: 150,
+    height: 100,
     width: null,
   },
   imageContainer: {
@@ -140,34 +133,41 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
 
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
+  row: {
+    flexDirection: "row",
   },
-  modalView: {
+
+  imageContent: {
+    height: 120,
+  },
+  imageContent1: {
+    width: "30%",
+    height: 100,
+    marginHorizontal: 5,
+  },
+  image: {
     width: "100%",
     height: "100%",
-    position: "relative",
-    bottom: 0,
-    margin: 20,
-    backgroundColor: "#F2F2F7",
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
   },
-  buttomCloaseModal: {
+
+  overlayContent: {
+    flex: 1,
     position: "absolute",
-    right: 15,
-    top: 10,
+    zIndex: 100,
+    right: 0,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  count: {
+    fontSize: 50,
+    color: "#ffffff",
+    fontWeight: "bold",
+    textShadowColor: "rgba(0, 0, 139, 1)",
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 10,
   },
 });
 

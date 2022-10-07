@@ -13,7 +13,7 @@ import {
 
 const { width, height } = Dimensions.get("window");
 
-const COLORS = { primary: "#242426", white: "#F2F2F7" };
+const COLORS = { primary: "#FF3B30", white: "#F2F2F7" };
 
 const slides = [
   {

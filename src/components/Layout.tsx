@@ -4,7 +4,7 @@ import { View, StatusBar, StyleSheet, SafeAreaView } from "react-native";
 const Layout = ({ children }: any) => {
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar backgroundColor={"#FF3B30"} />
+      <StatusBar backgroundColor={"rgba(255, 59, 48, 0.9)"} />
       {children}
     </SafeAreaView>
   );
