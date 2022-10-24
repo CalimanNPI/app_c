@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import {
-  FlatList,
   SafeAreaView,
   Animated,
   StyleSheet,
@@ -12,6 +11,8 @@ import {
   Platform,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import FONTS from "../util/Fonts";
+import COLORS from "../util/Colors";
 
 const { width } = Dimensions.get("window");
 
@@ -21,7 +22,7 @@ const BORDER_RADIUS = 20;
 
 const EMPTY_ITEM_LENGTH = (width - ITEM_LENGTH) / 2;
 
-const PublicityList = ({ item } : any) => {
+const PublicityList = ({ item }: any) => {
   const navigation = useNavigation();
 
   const [datas, setDatas] = useState([]);
@@ -83,7 +84,9 @@ const PublicityList = ({ item } : any) => {
                 <Image source={{ uri: item.img_url }} style={styles.img} />
 
                 <View style={styles.containerText}>
-                  <Text style={styles.textTitle}>{item.title}</Text>
+                  <Text style={[FONTS.title, { color: COLORS.white }]}>
+                    {item.title}
+                  </Text>
                 </View>
               </Animated.View>
             </TouchableOpacity>
@@ -104,18 +107,18 @@ const styles = StyleSheet.create({
   content: {
     width: ITEM_LENGTH,
     marginBottom: 100,
-    shadowColor: "#242426",
+    shadowColor: COLORS.gray,
     shadowOffset: {
       width: 0,
-      height: 10,
+      height: 2,
     },
-    shadowOpacity: 0.53,
-    shadowRadius: 13.97,
-    elevation: 15,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   card: {
     marginHorizontal: SPACING,
-    backgroundColor: "#F2F2F7",
+    backgroundColor: COLORS.white,
     borderRadius: BORDER_RADIUS / 2,
   },
   img: {
@@ -126,17 +129,11 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
   },
   containerText: {
-    backgroundColor: "#FF3B30",
+    backgroundColor: COLORS.primaryR,
     justifyContent: "center",
     alignItems: "center",
     borderBottomLeftRadius: BORDER_RADIUS / 3,
     borderBottomRightRadius: BORDER_RADIUS / 3,
-  },
-  textTitle: {
-    margin: 10,
-    fontFamily: "SpaceMono_700Bold",
-    color: "#F2F2F7",
-    fontSize: 25,
   },
 });
 

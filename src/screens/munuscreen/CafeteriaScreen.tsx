@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   StyleSheet,
   Text,
@@ -9,44 +9,10 @@ import {
 } from "react-native";
 import { openURL } from "expo-linking";
 import Layout from "../../components/Layout";
+import COLORS from "../../components/util/Colors";
+import FONTS from "../../components/util/Fonts";
 
-const items = [
-  {
-    id: 1,
-    title: "Menú del día",
-    desc: "Los sabores que te harán sentir bien. ",
-    image: "http://192.168.1.243/api_cdc/public/menus/img/dia.png",
-    pdf: "http://192.168.1.243/api_cdc/public/menus/Menu-Infantil.pdf",
-  },
-  {
-    id: 2,
-    title: "Menú de desayunos",
-    desc: "Los sabores que te harán sentir bien. ",
-    image: "http://192.168.1.243/api_cdc/public/menus/img/desayunos.png",
-    pdf: "http://192.168.1.243/api_cdc/public/menus/Menu-De-Desayunos.pdf",
-  },
-  {
-    id: 3,
-    title: "Menú comidas y cenas",
-    desc: "Los sabores que te harán sentir bien. ",
-    image: "http://192.168.1.243/api_cdc/public/menus/img/comidas.png",
-    pdf: "http://192.168.1.243/api_cdc/public/menus/Menu-De-Comida-y-Cenas.pdf",
-  },
-  {
-    id: 4,
-    title: "Menú infantil",
-    desc: "Los sabores que te harán sentir bien. ",
-    image: "http://192.168.1.243/api_cdc/public/menus/img/infantil.png",
-    pdf: "http://192.168.1.243/api_cdc/public/menus/Menu-Infantil.pdf",
-  },
-  {
-    id: 5,
-    title: "Menú de comida rapida",
-    desc: "Los sabores que te harán sentir bien. ",
-    image: "http://192.168.1.243/api_cdc/public/menus/img/fast.png",
-    pdf: "http://192.168.1.243/api_cdc/public/menus/Menu-De-Comida-Rapida.pdf",
-  },
-];
+import { menus } from "../../components/util/data";
 
 const renderItem = ({ item }: any) => {
   const _handleOpen = (pdf: string) => {
@@ -59,11 +25,15 @@ const renderItem = ({ item }: any) => {
         <Image style={styles.cardImage} source={{ uri: item.image }} />
         <View style={styles.cardContent}>
           <View>
-            <Text style={styles.textTitle}>{item.title}</Text>
-            <Text style={styles.textText}>{item.desc}</Text>
+            <Text style={[FONTS.title, { color: COLORS.white }]}>
+              {item.title}
+            </Text>
+            <Text style={[FONTS.subTitle, { color: COLORS.white }]}>
+              {item.desc}
+            </Text>
           </View>
         </View>
-      <View style={[StyleSheet.absoluteFillObject, styles.itemOverlay]} />
+        <View style={[StyleSheet.absoluteFillObject, styles.itemOverlay]} />
       </View>
     </TouchableOpacity>
   );
@@ -78,7 +48,7 @@ const CafeteriaScreen = () => {
         ItemSeparatorComponent={() => {
           return <View style={styles.separator} />;
         }}
-        data={items}
+        data={menus}
         keyExtractor={(item: any) => {
           return item.id;
         }}
@@ -92,9 +62,7 @@ const styles = StyleSheet.create({
   itemOverlay: {
     backgroundColor: "rgba(0, 0, 0, 0.15)",
   },
-  separator: {
-    marginTop: 1,
-  },
+  separator: { padding: 1, backgroundColor: COLORS.white },
   card: {
     margin: 0,
     borderRadius: 2,
@@ -118,18 +86,6 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 150,
     width: null,
-  },
-  textTitle: {
-    fontFamily: "SpaceMono_700Bold",
-    fontSize: 25,
-    color: "#F2F2F7",
-    marginTop: 10,
-  },
-  textText: {
-    fontFamily: "SpaceMono_700Bold",
-    fontSize: 14,
-    color: "#F2F2F7",
-    marginTop: 5,
   },
 });
 

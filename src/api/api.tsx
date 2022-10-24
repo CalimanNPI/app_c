@@ -49,6 +49,69 @@ const setNotify = async () => {
     });
 };
 
+const setActividad = async () => {
+  var fields = {
+    title: "Tenis",
+    body: "🤣🤣😎😎😢 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim adminim veniam, quis nostrud exercitation ullamco laboris nisi utaliquip ex ea commodo consequat. Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiat nullapariatur. Excepteur sint occaecat cupidatat non proident, sunt inculpa qui officia deserunt mollit anim id est laborum.",
+    image:"http://192.168.1.243/api_cdc/public/img/Inicio-1.png",
+    icon: "http://192.168.1.243/api_cdc/public/img/Inicio-1.png",
+    level: "05 - 08 años",
+    location: "canchas de tenis",
+    maxPerson: 30,
+    persons: 15,
+    priceMonth: 453.0,
+    priceClass: 81.0,
+    benefit: [
+      {
+        id: 1,
+        title: "Lechuga1",
+        icon: "http://192.168.1.243/api_cdc/public/img/Inicio-1.png",
+      },
+      {
+        id: 1,
+        title: "Lechuga2",
+        icon: "http://192.168.1.243/api_cdc/public/img/Inicio-1.png",
+      },
+      {
+        id: 1,
+        title: "Lechuga3",
+        icon: "http://192.168.1.243/api_cdc/public/img/Inicio-1.png",
+      },
+    ],
+    horario: [
+      {
+        id: 1,
+        day: "Lunes",
+        start: "16:00pm",
+        then: "16:55pm",
+      },
+      {
+        id: 1,
+        day: "Martes",
+        start: "16:00pm",
+        then: "16:55pm",
+      },
+      {
+        id: 1,
+        day: "Jueves",
+        start: "16:00pm",
+        then: "16:55pm",
+      },
+      {
+        id: 1,
+        day: "Miercoles",
+        start: "16:00pm",
+        then: "16:55pm",
+      },
+    ],
+  };
+  await axios
+    .postForm("http://192.168.1.243/api_cdc/actividad/", fields)
+    .then((response) => {
+      console.log(response.data);
+    });
+};
+
 const setPublicity = async () => {
   var fields = {
     title: "Title",
@@ -87,4 +150,5 @@ export {
   sendEmail,
   setNotify,
   setPublicity,
+  setActividad
 };

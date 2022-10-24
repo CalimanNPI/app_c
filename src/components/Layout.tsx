@@ -1,10 +1,11 @@
 import React from "react";
-import { View, StatusBar, StyleSheet, SafeAreaView } from "react-native";
+import { StatusBar, StyleSheet, SafeAreaView } from "react-native";
+import COLORS from "./util/Colors";
 
 const Layout = ({ children }: any) => {
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar backgroundColor={"rgba(255, 59, 48, 0.9)"} />
+      <StatusBar backgroundColor={COLORS.primaryR} />
       {children}
     </SafeAreaView>
   );
@@ -12,7 +13,7 @@ const Layout = ({ children }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "rgba(142, 142, 147, 0.3)",
+    backgroundColor: COLORS.white,
     alignItems: "center",
     justifyContent: "center",
   },

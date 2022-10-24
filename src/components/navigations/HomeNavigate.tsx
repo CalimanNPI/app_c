@@ -12,6 +12,8 @@ import CuotasScreen from "../../screens/munuscreen/CuotasScreen";
 import HorariosScreen from "../../screens/munuscreen/HorariosScreen";
 import InstalacionesScreen from "../../screens/munuscreen/InstalacinesScreen";
 import ReglamentoScreen from "../../screens/munuscreen/ReglamentoScreen";
+import TramitesScreen from "../../screens/munuscreen/TramitesScreen";
+import COLORS from "../util/Colors";
 
 const Stack = createNativeStackNavigator();
 
@@ -30,7 +32,12 @@ const NavigationHome = () => {
         component={PublicityDesc}
         options={() => ({
           title: "",
-          headerStyle: { backgroundColor: "#F2F2F7", color: "#FF3B30" },
+          headerTitleStyle: {
+            color: COLORS.gray,
+            fontFamily: "SpaceMono_700Bold",
+          },
+          headerStyle: { backgroundColor: COLORS.white },
+          headerTitleAlign: "center",
         })}
       />
       <Stack.Screen
@@ -38,7 +45,12 @@ const NavigationHome = () => {
         component={AboutScreen}
         options={() => ({
           title: "",
-          headerStyle: { backgroundColor: "#F2F2F7", color: "#FF3B30" },
+          headerTitleStyle: {
+            color: COLORS.gray,
+            fontFamily: "SpaceMono_700Bold",
+          },
+          headerStyle: { backgroundColor: COLORS.white },
+          headerTitleAlign: "center",
         })}
       />
       <Stack.Screen
@@ -46,7 +58,12 @@ const NavigationHome = () => {
         component={ActividadesScreen}
         options={() => ({
           title: "",
-          headerStyle: { backgroundColor: "#F2F2F7", color: "#FF3B30" },
+          headerTitleStyle: {
+            color: COLORS.gray,
+            fontFamily: "SpaceMono_700Bold",
+          },
+          headerStyle: { backgroundColor: COLORS.white },
+          headerTitleAlign: "center",
         })}
       />
       <Stack.Screen
@@ -54,7 +71,12 @@ const NavigationHome = () => {
         component={CafeteriaScreen}
         options={() => ({
           title: "",
-          headerStyle: { backgroundColor: "#F2F2F7", color: "#FF3B30" },
+          headerTitleStyle: {
+            color: COLORS.gray,
+            fontFamily: "SpaceMono_700Bold",
+          },
+          headerStyle: { backgroundColor: COLORS.white },
+          headerTitleAlign: "center",
         })}
       />
       <Stack.Screen
@@ -62,7 +84,12 @@ const NavigationHome = () => {
         component={CuotasScreen}
         options={() => ({
           title: "",
-          headerStyle: { backgroundColor: "#F2F2F7", color: "#FF3B30" },
+          headerTitleStyle: {
+            color: COLORS.gray,
+            fontFamily: "SpaceMono_700Bold",
+          },
+          headerStyle: { backgroundColor: COLORS.white },
+          headerTitleAlign: "center",
         })}
       />
       <Stack.Screen
@@ -70,7 +97,12 @@ const NavigationHome = () => {
         component={HorariosScreen}
         options={() => ({
           title: "",
-          headerStyle: { backgroundColor: "#F2F2F7", color: "#FF3B30" },
+          headerTitleStyle: {
+            color: COLORS.gray,
+            fontFamily: "SpaceMono_700Bold",
+          },
+          headerStyle: { backgroundColor: COLORS.white },
+          headerTitleAlign: "center",
         })}
       />
       <Stack.Screen
@@ -78,7 +110,12 @@ const NavigationHome = () => {
         component={InstalacionesScreen}
         options={() => ({
           title: "",
-          headerStyle: { backgroundColor: "#F2F2F7", color: "#FF3B30" },
+          headerTitleStyle: {
+            color: COLORS.gray,
+            fontFamily: "SpaceMono_700Bold",
+          },
+          headerStyle: { backgroundColor: COLORS.white },
+          headerTitleAlign: "center",
         })}
       />
       <Stack.Screen
@@ -86,7 +123,12 @@ const NavigationHome = () => {
         component={InstalacioneDesc}
         options={() => ({
           title: "",
-          headerStyle: { backgroundColor: "#F2F2F7", color: "#FF3B30" },
+          headerTitleStyle: {
+            color: COLORS.gray,
+            fontFamily: "SpaceMono_700Bold",
+          },
+          headerStyle: { backgroundColor: COLORS.white },
+          headerTitleAlign: "center",
         })}
       />
       <Stack.Screen
@@ -94,7 +136,25 @@ const NavigationHome = () => {
         component={ReglamentoScreen}
         options={() => ({
           title: "",
-          headerStyle: { backgroundColor: "#F2F2F7", color: "#FF3B30" },
+          headerTitleStyle: {
+            color: COLORS.gray,
+            fontFamily: "SpaceMono_700Bold",
+          },
+          headerStyle: { backgroundColor: COLORS.white },
+          headerTitleAlign: "center",
+        })}
+      />
+      <Stack.Screen
+        name="TramitesScreen"
+        component={TramitesScreen}
+        options={() => ({
+          title: "",
+          headerTitleStyle: {
+            color: COLORS.gray,
+            fontFamily: "SpaceMono_700Bold",
+          },
+          headerStyle: { backgroundColor: COLORS.white },
+          headerTitleAlign: "center",
         })}
       />
     </Stack.Navigator>

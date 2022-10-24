@@ -4,32 +4,32 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
 import ModalViewDesc from "../ModalDescView";
+import COLORS from "../util/Colors";
+import FONTS from "../util/Fonts";
 
 const NotifyItem = ({ item }: any) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <>
-    <View style={styles.lineStyle}/>
-      {item.isSend && item.title && (
+      {item.isSend && (
         <TouchableOpacity
           onPress={() =>
-            item.desc != null ? setModalVisible(true) : setModalVisible(false)
+            item.desc ? setModalVisible(true) : setModalVisible(false)
           }
           style={styles.card}
         >
           <View style={{ width: "20%" }}>
-            <FontAwesome name={"bell-o"} style={styles.img} />
+            <FontAwesome name={"bell-o"} style={styles.icon} />
           </View>
           <View style={styles.distributor}>
-            <Text style={styles.textTitle}>{item.title}</Text>
-            <Text style={styles.textText}>{item.body}</Text>
-            <Text
-              style={[
-                styles.textText,
-                { color: "#FF3B30", fontFamily: "SpaceMono_700Bold" },
-              ]}
-            >
+            <Text style={[FONTS.subTitle, { color: COLORS.gray }]}>
+              {item.title}
+            </Text>
+            <Text style={[FONTS.body, { color: COLORS.gray }]}>
+              {item.body}
+            </Text>
+            <Text style={[FONTS.body, { color: COLORS.primaryR }]}>
               {item.n_type}
             </Text>
           </View>
@@ -47,41 +47,23 @@ const NotifyItem = ({ item }: any) => {
 };
 
 const styles = StyleSheet.create({
-
-  /**Card N*/
   card: {
     width: "100%",
     flexDirection: "row",
     paddingVertical: 20,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#F2F2F7", 
-    marginVertical: 8
+    backgroundColor: COLORS.white,
   },
   distributor: {
     width: "80%",
-    paddingHorizontal: 15,
     alignItems: "flex-start",
   },
-  img: {
-    color: "#FF3B30",
+  icon: {
+    color: COLORS.primaryR,
     fontSize: 50,
     textAlign: "center",
-    textAlignVertical: "center",
   },
-  textTitle: {
-    fontFamily: "SpaceMono_700Bold",
-    color: "#8E8E93",
-    fontSize: 16,
-    textAlign: "left",
-  },
-  textText: {
-    fontFamily: "SpaceMono_400Regular",
-    color: "#8E8E93",
-    fontSize: 14,
-    textAlign: "justify",
-  },
-
 });
 
 export default NotifyItem;

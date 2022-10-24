@@ -7,56 +7,29 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import Layout from "../../components/Layout";
+import FONTS from "../../components/util/Fonts";
+import COLORS from "../../components/util/Colors";
 
-const data = [
-  {
-    id: 1,
-    title: "Lorem ipsum dolor",
-    time: "2018-08-01 12:15 pm",
-    image: [
-      {
-        id: 1, 
-        title: "Lorem ipsum dolor",
-        image: "http://192.168.1.243/api_cdc/public/menus/img/dia.png",
-      },
-      {
-        id: 2, 
-        title: "Lorem ipsum dolor",
-        image: "http://192.168.1.243/api_cdc/public/menus/img/comidas.png",
-      },
-      {
-        id: 3, 
-        title: "Lorem ipsum dolor",
-        image: "http://192.168.1.243/api_cdc/public/menus/img/desayunos.png",
-      },
-      {
-        id: 4, 
-        title: "Lorem ipsum dolor",
-        image: "http://192.168.1.243/api_cdc/public/menus/img/fast.png",
-      },
-      {
-        id: 5, 
-        title: "Lorem ipsum dolor",
-        image: "http://192.168.1.243/api_cdc/public/menus/img/infantil.png",
-      },
-    ],
-    description:
-      "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean  ligula...",
-  },
-];
+import { instalaciones } from "../../components/util/data";
 
 const InstalacionesScreen = () => {
   const navigation = useNavigation();
   return (
     <Layout>
       <FlatList
-        data={data}
+        data={instalaciones}
+        style={{ marginTop: 10 }}
+        showsVerticalScrollIndicator={false}
         keyExtractor={(item: any) => {
           return item.id;
         }}
-        renderItem={({item}) => {
+        ItemSeparatorComponent={() => {
+          return <View style={styles.separator} />;
+        }}
+        renderItem={({ item }: any) => {
           return (
             <TouchableOpacity
               style={styles.card}
@@ -66,6 +39,7 @@ const InstalacionesScreen = () => {
                   title: item.title,
                   desc: item.description,
                   images: item.image,
+                  time: item.time,
                 })
               }
             >
@@ -75,16 +49,17 @@ const InstalacionesScreen = () => {
               />
               <View style={styles.cardHeader}>
                 <View>
-                  <Text style={styles.title}>{item.title}</Text>
-                  <Text style={styles.description}>{item.description}</Text>
+                  <Text style={[FONTS.subTitle, { color: COLORS.gray }]}>
+                    {item.title}
+                  </Text>
+                  <Text style={[FONTS.body, { color: COLORS.gray }]}>
+                    {item.description}
+                  </Text>
                   <View style={styles.timeContainer}>
-                    <Image
-                      style={styles.iconData}
-                      source={{
-                        uri: "https://img.icons8.com/color/96/3498db/calendar.png",
-                      }}
-                    />
-                    <Text style={styles.time}>{item.time}</Text>
+                    <AntDesign style={styles.iconData} name="calendar" />
+                    <Text style={[FONTS.desc, { color: COLORS.gray }]}>
+                      {item.time}
+                    </Text>
                   </View>
                 </View>
               </View>
@@ -97,11 +72,10 @@ const InstalacionesScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  /******** card **************/
+  separator: { padding: 5, backgroundColor: COLORS.white },
   card: {
     shadowRadius: 4,
-    marginVertical: 8,
-    backgroundColor: "#F2F2F7",
+    backgroundColor: COLORS.white,
   },
   cardHeader: {
     paddingVertical: 17,
@@ -122,27 +96,6 @@ const styles = StyleSheet.create({
     width: null,
   },
 
-  /******** card components **************/
-  title: {
-    fontSize: 18,
-    fontFamily: "SpaceMono_700Bold",
-    color: "#FF3B30",
-    flex: 1,
-  },
-  description: {
-    fontSize: 14,
-    fontFamily: "SpaceMono_700Bold",
-    color: "#8E8E93",
-    flex: 1,
-    marginTop: 5,
-    marginBottom: 5,
-  },
-  time: {
-    fontSize: 12,
-    fontFamily: "SpaceMono_700Bold",
-    color: "#8E8E93",
-    marginTop: 5,
-  },
   icon: {
     width: 25,
     height: 25,
@@ -152,6 +105,8 @@ const styles = StyleSheet.create({
     height: 15,
     marginTop: 5,
     marginRight: 5,
+    fontSize: 15,
+    color: COLORS.primaryR,
   },
   timeContainer: {
     flexDirection: "row",

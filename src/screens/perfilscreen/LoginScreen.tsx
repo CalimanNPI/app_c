@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Image,
   Alert,
+  ImageBackground,
 } from "react-native";
 
 const LoginScreen = () => {
@@ -19,11 +20,10 @@ const LoginScreen = () => {
     setForm({ ...form, [name]: value });
 
   return (
-    <View style={styles.container}>
-      <Image
-        style={styles.bgImage}
-        source={{ uri: "http://192.168.1.243/api_cdc/public/instalaciones/Árbol.png" }}
-      />
+    <ImageBackground   source={{
+      uri: "http://192.168.1.243/api_cdc/public/instalaciones/Árbol.png",
+    }} style={styles.container}>
+ 
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.inputs}
@@ -52,12 +52,7 @@ const LoginScreen = () => {
         />
       </View>
 
-      <TouchableOpacity
-        style={styles.btnForgotPassword}
-        onPress={() => onClickListener("restore_password")}
-      >
-        <Text style={styles.btnText}>Forgot your password?</Text>
-      </TouchableOpacity>
+
 
       <TouchableOpacity
         style={[styles.buttonContainer, styles.loginButton]}
@@ -65,7 +60,7 @@ const LoginScreen = () => {
       >
         <Text style={styles.loginText}>Login</Text>
       </TouchableOpacity>
-    </View>
+    </ImageBackground>
   );
 };
 
@@ -78,39 +73,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#DCDCDC",
   },
-  inputContainer: {
-    borderBottomColor: "#F5FCFF",
-    backgroundColor: "#FFFFFF",
-    borderRadius: 30,
-    borderBottomWidth: 1,
-    width: 300,
-    height: 45,
-    marginBottom: 20,
-    flexDirection: "row",
-    alignItems: "center",
 
-    shadowColor: "#808080",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-
-    elevation: 5,
-  },
-  inputs: {
-    height: 45,
-    marginLeft: 16,
-    borderBottomColor: "#FFFFFF",
-    flex: 1,
-  },
-  inputIcon: {
-    width: 30,
-    height: 30,
-    marginRight: 15,
-    justifyContent: "center",
-  },
   buttonContainer: {
     height: 45,
     flexDirection: "row",
@@ -146,14 +109,7 @@ const styles = StyleSheet.create({
   loginText: {
     color: "white",
   },
-  bgImage: {
-    flex: 1,
-    resizeMode,
-    position: "absolute",
-    width: "100%",
-    height: "100%",
-    justifyContent: "center",
-  },
+
   btnText: {
     color: "white",
     fontWeight: "bold",

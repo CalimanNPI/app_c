@@ -1,38 +1,23 @@
-import React, {
-  useEffect,
-  useState,
-  useCallback,
-  useMemo,
-  useRef,
-} from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
   Image,
   StyleSheet,
   View,
   ScrollView,
-  Dimensions,
   RefreshControl,
-  Platform,
   Button,
-  Text,
-  SafeAreaView,
 } from "react-native";
-
-import { LinearGradient } from "expo-linear-gradient";
 
 import Layout from "../components/Layout";
 import PublicityList from "../components/publications/PublicityList";
 import { getPublicity } from "../api/api";
-
-const { width, height } = Dimensions.get("window");
-var box_count = 3;
-var box_height = height / box_count;
+import COLORS from "../components/util/Colors";
 
 const wait = (timeout: number) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
 };
 
-const HomeScreen = ({ navigation }: any) => {
+const HomeScreen = () => {
   const [publicitys, setPublicitys] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
 
@@ -59,8 +44,8 @@ const HomeScreen = ({ navigation }: any) => {
           <RefreshControl
             refreshing={refreshing}
             onRefresh={onRefresh}
-            colors={["#FF3B30"]}
-            progressBackgroundColor={"#F2F2F7"}
+            colors={[COLORS.primaryR]}
+            progressBackgroundColor={COLORS.white}
           />
         }
         style={styles.content}
@@ -73,12 +58,11 @@ const HomeScreen = ({ navigation }: any) => {
           />
         </View>
 
-        <LinearGradient
-          colors={["#f2f2f7", "#f2f2f7", "#f2f2f7"]}
-          style={styles.bodyContend}
-        >
+        <View style={styles.bodyContent}>
           <PublicityList item={publicitys} />
-        </LinearGradient>
+          <PublicityList item={publicitys} />
+          <PublicityList item={publicitys} />
+        </View>
       </ScrollView>
     </Layout>
   );
@@ -90,49 +74,19 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   imageContent: {
-    width: width,
-    height: box_height,
+    width: "100%",
+    height: 250,
     position: "relative",
     top: -20,
     zIndex: -1,
   },
-  bodyContend: {
-    width: width,
-    backgroundColor: "#f2f2f7",
+  bodyContent: {
+    flex: 1,
+    flexDirection: "column",
+    width: "100%",
+    backgroundColor: COLORS.white,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    overflow: "hidden",
-  },
-  textTitle: {
-    fontFamily: Platform.OS === "ios" ? "Cagliostro" : "monospace",
-    fontSize: 14,
-    fontWeight: "bold",
-    color: "#FF3B30",
-    textAlign: "justify",
-    textAlignVertical: "center",
-  },
-  cardContainer: {
-    height: 100,
-    width: "100%",
-    flexDirection: "row",
-    padding: 5,
-    marginVertical: 30,
-  },
-  image: {
-    height: "100%",
-    flex: 0.35,
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: "bold",
-    marginBottom: 5,
-  },
-
-  container: {
-    flex: 1,
-    padding: 24,
-    justifyContent: "center",
-    backgroundColor: "white",
   },
 });
 

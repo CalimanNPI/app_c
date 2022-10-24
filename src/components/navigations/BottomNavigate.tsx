@@ -12,13 +12,14 @@ import LocationScreen from "../../screens/LocationScreen";
 import MessageScreen from "../../screens/MessageScreen";
 import NotificationScreen from "../../screens/NotificationScreen";
 import PerfilScreen from "../../screens/PerfilScreen";
-import ButtomMenu from "../ButtomMenu";
+import ButtomMenu from "../bottomsheet/BottomMenu";
+import COLORS from "../util/Colors";
 
 const Tab = createBottomTabNavigator();
 
 const BottomNavigate = () => {
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   // variables
   const snapPoints = useMemo(() => ["30%", "60%", "90%"], []);
@@ -58,8 +59,8 @@ const BottomNavigate = () => {
               );
             }
           },
-          tabBarActiveTintColor: "#FF3B30",
-          tabBarInactiveTintColor: "#8E8E93",
+          tabBarActiveTintColor: COLORS.primaryR,
+          tabBarInactiveTintColor: COLORS.gray,
           tabBarShowLabel: false,
         })}
       >
@@ -71,11 +72,11 @@ const BottomNavigate = () => {
             headerTitleAlign: "center",
             headerShadowVisible: false,
             headerStyle: {
-              backgroundColor: "#F2F2F7",
+              backgroundColor: COLORS.white,
             },
             headerTitleStyle: {
               fontFamily: "SpaceMono_700Bold",
-              color: "#FF3B30",
+              color: COLORS.primaryR,
               fontSize: 10,
             },
             headerLeft: () => (
@@ -94,7 +95,7 @@ const BottomNavigate = () => {
                 onPress={handlePresentModalPress}
                 style={{ marginRight: 17 }}
               >
-                <FontAwesome name={"bars"} size={24} color="#8E8E93" />
+                <FontAwesome name={"bars"} size={24} color={COLORS.primaryR} />
               </TouchableOpacity>
             ),
           })}
@@ -107,11 +108,11 @@ const BottomNavigate = () => {
             headerTitleAlign: "center",
             headerShadowVisible: false,
             headerStyle: {
-              backgroundColor: "#F2F2F7",
+              backgroundColor: COLORS.white,
             },
             headerTitleStyle: {
               fontFamily: "SpaceMono_700Bold",
-              color: "#FF3B30",
+              color: COLORS.primaryR,
               fontSize: 10,
             },
             headerLeft: () => (
@@ -130,7 +131,7 @@ const BottomNavigate = () => {
                 onPress={handlePresentModalPress}
                 style={{ marginRight: 17 }}
               >
-                <FontAwesome name={"bars"} size={24} color="#8E8E93" />
+                <FontAwesome name={"bars"} size={24} color={COLORS.primaryR} />
               </TouchableOpacity>
             ),
           })}
@@ -143,11 +144,11 @@ const BottomNavigate = () => {
             headerTitleAlign: "center",
             headerShadowVisible: false,
             headerStyle: {
-              backgroundColor: "#F2F2F7",
+              backgroundColor: COLORS.white,
             },
             headerTitleStyle: {
               fontFamily: "SpaceMono_700Bold",
-              color: "#FF3B30",
+              color: COLORS.primaryR,
               fontSize: 10,
             },
             headerLeft: () => (
@@ -166,7 +167,7 @@ const BottomNavigate = () => {
                 onPress={handlePresentModalPress}
                 style={{ marginRight: 17 }}
               >
-                <FontAwesome name={"bars"} size={24} color="#8E8E93" />
+                <FontAwesome name={"bars"} size={24} color={COLORS.primaryR} />
               </TouchableOpacity>
             ),
           })}
@@ -179,11 +180,11 @@ const BottomNavigate = () => {
             headerTitleAlign: "center",
             headerShadowVisible: false,
             headerStyle: {
-              backgroundColor: "#F2F2F7",
+              backgroundColor: COLORS.white,
             },
             headerTitleStyle: {
               fontFamily: "SpaceMono_700Bold",
-              color: "#FF3B30",
+              color: COLORS.primaryR,
               fontSize: 10,
             },
             headerLeft: () => (
@@ -202,7 +203,7 @@ const BottomNavigate = () => {
                 onPress={handlePresentModalPress}
                 style={{ marginRight: 17 }}
               >
-                <FontAwesome name={"bars"} size={24} color="#8E8E93" />
+                <FontAwesome name={"bars"} size={24} color={COLORS.primaryR} />
               </TouchableOpacity>
             ),
           })}
@@ -213,10 +214,8 @@ const BottomNavigate = () => {
           options={() => ({
             title: "",
             headerStyle: {
-              backgroundColor: "#F2F2F7",
+              backgroundColor: COLORS.white,
             },
-
-            tabBarStyle: { backgroundColor: "#F2F2F7" },
           })}
         />
       </Tab.Navigator>
@@ -225,8 +224,9 @@ const BottomNavigate = () => {
         index={1}
         snapPoints={snapPoints}
         onChange={handleSheetChanges}
+        onDismiss={() => setIsOpen(false)}
       >
-        <View style={{ flex: 1, backgroundColor: "#fff" }}>
+        <View style={{ flex: 1, backgroundColor: COLORS.white }}>
           <ButtomMenu />
         </View>
       </BottomSheetModal>

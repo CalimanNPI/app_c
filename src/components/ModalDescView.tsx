@@ -6,10 +6,11 @@ import {
   TouchableOpacity,
   Modal,
   Image,
-  ScrollView,
   StatusBar,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import FONTS from "./util/Fonts";
+import COLORS from "./util/Colors";
 
 const ModalViewDesc = ({
   title,
@@ -25,22 +26,26 @@ const ModalViewDesc = ({
       visible={modalVisible}
       onRequestClose={() => setModalVisible(true)}
     >
-       {modalVisible ? <StatusBar backgroundColor={"rgba(255, 59, 48, 0.4)"}/> : <StatusBar backgroundColor={"rgba(255, 59, 48, 0.9)"}/>}
+      {modalVisible ? (
+        <StatusBar backgroundColor={COLORS.primaryRLight} />
+      ) : (
+        <StatusBar backgroundColor={COLORS.primaryR} />
+      )}
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <TouchableOpacity
             onPress={() => setModalVisible(false)}
             style={styles.buttomCloaseModal}
           >
-            <AntDesign name="close" size={30} color="#FF3B30" />
+            <AntDesign name="close" size={30} color={COLORS.primaryR} />
           </TouchableOpacity>
           <Image source={{ uri: imageUri }} style={styles.imgModal} />
-          <Text style={[styles.textTitle, { marginTop: 20, fontSize: 25 }]}>
+          <Text style={[FONTS.title, { marginTop: 20, color: COLORS.gray }]}>
             {title}
           </Text>
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <Text style={[{ marginTop: 30 }, styles.textText]}>{desc}</Text>
-          </ScrollView>
+          <Text style={[{ marginTop: 30, color: COLORS.gray }, FONTS.body]}>
+            {desc}
+          </Text>
         </View>
       </View>
     </Modal>
@@ -54,19 +59,6 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     marginTop: 20,
   },
-  textTitle: {
-    fontFamily: "SpaceMono_700Bold",
-    color: "#8E8E93",
-    fontSize: 16,
-    textAlign: "justify",
-  },
-  textText: {
-    fontFamily: "SpaceMono_400Regular",
-    color: "#8E8E93",
-    fontSize: 14,
-    textAlign: "justify",
-  },
-  /**Modal */
   centeredView: {
     flex: 1,
     justifyContent: "center",
@@ -75,20 +67,8 @@ const styles = StyleSheet.create({
   modalView: {
     width: "100%",
     height: "100%",
-    position: "relative",
-    bottom: 0,
-    margin: 20,
-    backgroundColor: "#F2F2F7",
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#8E8E93",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
+    backgroundColor: COLORS.white,
+    padding: 20,
   },
   buttomCloaseModal: {
     position: "absolute",

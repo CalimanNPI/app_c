@@ -1,17 +1,15 @@
 import React, { useState } from "react";
-import {
-  Text,
-  TextInput,
-  StyleSheet,
-  Dimensions,
-  View,
-} from "react-native";
+import { Text, StyleSheet, Dimensions, View } from "react-native";
 
 import Layout from "../components/Layout";
 
 import { sendEmail } from "../api/api";
-import ButtomGradient from "../components/ButtomGradient";
+import ButtomComponent from "../components/ButtomComponent";
 import BackgroundSvg from "../components/BackgroundSvg";
+import COLORS from "../components/util/Colors";
+import FONTS from "../components/util/Fonts";
+import InputComponent from "../components/InputComponent";
+import InputAreaComponent from "../components/InputAreaComponent";
 
 const { width } = Dimensions.get("screen");
 const MailScreen = () => {
@@ -24,8 +22,7 @@ const MailScreen = () => {
 
   const sendEmailCDC = async () => {
     const data = await sendEmail(email);
-
-    alert(data.message);
+    alert(data);
   };
 
   const handleChange = (name: any, value: any) =>
@@ -34,114 +31,80 @@ const MailScreen = () => {
   return (
     <Layout>
       <BackgroundSvg style={styles.containerSVG} />
-      <>
-        <View style={styles.container}>
-          <Text style={styles.subTitle}> Envia un correo</Text>
-          <TextInput
-            autoCorrect={true}
-            placeholder="Nombre"
-            placeholderTextColor="#8E8E93"
-            value={email.name}
-            style={styles.textInput}
-            onChangeText={(text) => handleChange("name", text)}
-          />
-          <TextInput
-            placeholder="Correo electrónico"
-            placeholderTextColor="#8E8E93"
-            value={email.email}
-            style={styles.textInput}
-            onChangeText={(text) => handleChange("email", text)}
-          />
-          <TextInput
-            placeholder="Clave usuario"
-            placeholderTextColor="#8E8E93"
-            value={email.userKey}
-            style={styles.textInput}
-            onChangeText={(text) => handleChange("userKey", text)}
-          />
-          <TextInput
-            placeholder="Mensaje"
-            placeholderTextColor="#8E8E93"
-            multiline={true}
-            numberOfLines={5}
-            style={styles.textAreaInput}
-            value={email.message}
-            onChangeText={(text) => handleChange("message", text)}
-          />
-          <ButtomGradient onPress={sendEmailCDC} textButton={"Enviar"} />
-        </View>
-      </>
+
+      <View style={styles.container}>
+        <Text style={[FONTS.title, { color: COLORS.primaryR }]}>
+          Envia un correo
+        </Text>
+
+        <InputComponent
+          placeholder="Nombre"
+          keyboardType={"default"}
+          icon="mail"
+          value={email.name}
+          onChangeText={(text: string) => handleChange("name", text)}
+        />
+        <InputComponent
+          placeholder="Nombre"
+          keyboardType={"default"}
+          icon="user"
+          value={email.email}
+          onChangeText={(text: string) => handleChange("email", text)}
+        />
+        <InputComponent
+          placeholder="Nombre"
+          keyboardType={"default"}
+          icon="key"
+          value={email.userKey}
+          onChangeText={(text: string) => handleChange("userKey", text)}
+        />
+
+        <InputAreaComponent
+          placeholder="Nombre"
+          keyboardType={"default"}
+          icon="message1"
+          value={email.message}
+          onChangeText={(text: string) => handleChange("message", text)}
+        />
+
+        <ButtomComponent
+          onPress={sendEmailCDC}
+          type={"primaryR"}
+          size={"large"}
+          label={"Enviar"}
+        />
+      </View>
     </Layout>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    width: "90%",
     flex: 1,
-    backgroundColor: "#F2F2F7",
+    flexDirection: "column",
+    width: "90%",
+    backgroundColor: COLORS.white,
+
     alignItems: "center",
     justifyContent: "center",
     position: "absolute",
     padding: 10,
     borderRadius: 20,
-    shadowColor: "#242426",
+    shadowColor: COLORS.gray,
     shadowOffset: {
       width: 0,
-      height: 8,
+      height: 2,
     },
-    shadowOpacity: 0.46,
-    shadowRadius: 11.14,
-    elevation: 17,
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 5,
   },
   containerSVG: {
     width: width,
     justifyContent: "flex-start",
     alignContent: "center",
     position: "absolute",
-  },
-  titulo: {
-    fontSize: 80,
-    color: "#8E8E93",
-    fontWeight: "bold",
-    fontFamily: "SpaceMono_400Regular",
-  },
-  subTitle: {
-    fontSize: 30,
-    color: "#8E8E93",
-    fontWeight: "bold",
-    textAlign: "center",
-    fontFamily: "SpaceMono_400Regular",
-  },
-  textInput: {
-    padding: 10,
-    paddingStart: 30,
-    width: "100%",
-    height: 50,
-    marginTop: 20,
-    borderRadius: 10,
-    backgroundColor: "#F2F2F7",
-    fontFamily: "SpaceMono_400Regular",
-    borderColor: "#FF3B30",
-    borderWidth: 2,
-  },
-  textAreaInput: {
-    padding: 10,
-    paddingStart: 30,
-    width: "100%",
-    height: 100,
-    marginTop: 20,
-    borderRadius: 10,
-    backgroundColor: "#F2F2F7",
-    fontFamily: "SpaceMono_400Regular",
-    borderColor: "#FF3B30",
-    borderWidth: 1.5,
-  },
-  forgotPassword: {
-    fontSize: 14,
-    color: "gray",
-    marginTop: 20,
-    fontFamily: "SpaceMono_400Regular",
   },
 });
 

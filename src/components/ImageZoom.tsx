@@ -54,7 +54,7 @@ const ImageZoom = ({ image }: any) => {
 
   return (
     <PinchGestureHandler onGestureEvent={pinchHandler}>
-      <Animated.View style={{ flex: 1 }}>
+      <Animated.View style={{ flex: 1, zIndex: 2 }}>
         <AnimatedImage style={[{ flex: 1 }, rStyle]} source={{ uri: image }} />
         <Animated.View
           style={[
