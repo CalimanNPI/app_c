@@ -13,9 +13,7 @@ const Layout = ({ children }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.white,
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: COLORS.primaryRLightT0_015,
   },
 });
 

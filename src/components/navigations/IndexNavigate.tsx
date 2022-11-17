@@ -2,7 +2,8 @@ import React, { useCallback, useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import BottomNavigate from "./BottomNavigate";
+//import BottomNavigate from "./BottomNavigate";
+import DrawerNavigate from "./DrawerNavigate";
 import OnboardingScreen from "../../screens/OnboardingScreen";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import isAppFirstLaunchedC from "../../auth/LoadFirst";
@@ -92,21 +93,21 @@ export default function IndexNavigate() {
               />
             )}
             <Stack.Screen
-              name="BottomNavigate"
-              component={BottomNavigate}
+              name="DrawerNavigate"
+              component={DrawerNavigate}
               options={() => ({
                 headerShown: false,
               })}
             />
           </Stack.Navigator>
-          <ModalViewDesc
-            title={title}
-            desc={desc}
-            imageUri={icon}
-            modalVisible={modalVisible}
-            setModalVisible={setModalVisible}
-          />
         </NavigationContainer>
+        <ModalViewDesc
+          title={title}
+          desc={desc}
+          imageUri={icon}
+          modalVisible={modalVisible}
+          setModalVisible={setModalVisible}
+        />
       </GestureHandlerRootView>
     )
   );

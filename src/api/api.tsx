@@ -40,21 +40,19 @@ const setNotify = async () => {
     body: "Chuleta de cerdo 50% de descuento",
     desc: "🤣🤣😎😎😢 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim adminim veniam, quis nostrud exercitation ullamco laboris nisi utaliquip ex ea commodo consequat. Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiat nullapariatur. Excepteur sint occaecat cupidatat non proident, sunt inculpa qui officia deserunt mollit anim id est laborum.",
     n_type: "EVENTO",
-    iconName: "http://192.168.1.243/api_cdc/public/img/Inicio-1.png",
+    iconName: API + "/api_cdc/public/img/Inicio-1.png",
   };
-  await axios
-    .postForm("http://192.168.1.243/api_cdc/notify/", fields)
-    .then((response) => {
-      console.log(response.data);
-    });
+  await axios.postForm(API + "/api_cdc/notify/", fields).then((response) => {
+    console.log(response.data);
+  });
 };
 
 const setActividad = async () => {
   var fields = {
     title: "Tenis",
     body: "🤣🤣😎😎😢 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim adminim veniam, quis nostrud exercitation ullamco laboris nisi utaliquip ex ea commodo consequat. Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiat nullapariatur. Excepteur sint occaecat cupidatat non proident, sunt inculpa qui officia deserunt mollit anim id est laborum.",
-    image:"http://192.168.1.243/api_cdc/public/img/Inicio-1.png",
-    icon: "http://192.168.1.243/api_cdc/public/img/Inicio-1.png",
+    image: API + "/api_cdc/public/img/Inicio-1.png",
+    icon: API + "/api_cdc/public/img/Inicio-1.png",
     level: "05 - 08 años",
     location: "canchas de tenis",
     maxPerson: 30,
@@ -65,17 +63,17 @@ const setActividad = async () => {
       {
         id: 1,
         title: "Lechuga1",
-        icon: "http://192.168.1.243/api_cdc/public/img/Inicio-1.png",
+        icon: API + "/api_cdc/public/img/Inicio-1.png",
       },
       {
         id: 1,
         title: "Lechuga2",
-        icon: "http://192.168.1.243/api_cdc/public/img/Inicio-1.png",
+        icon: API + "/api_cdc/public/img/Inicio-1.png",
       },
       {
         id: 1,
         title: "Lechuga3",
-        icon: "http://192.168.1.243/api_cdc/public/img/Inicio-1.png",
+        icon: API + "/api_cdc/public/img/Inicio-1.png",
       },
     ],
     horario: [
@@ -105,18 +103,16 @@ const setActividad = async () => {
       },
     ],
   };
-  await axios
-    .postForm("http://192.168.1.243/api_cdc/actividad/", fields)
-    .then((response) => {
-      console.log(response.data);
-    });
+  await axios.postForm(API + "/api_cdc/actividad/", fields).then((response) => {
+    console.log(response.data);
+  });
 };
 
 const setPublicity = async () => {
   var fields = {
     title: "Title",
     body: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim adminim veniam, quis nostrud exercitation ullamco laboris nisi utaliquip ex ea commodo consequat. Duis aute irure dolor inreprehenderit in voluptate velit esse cillum dolore eu fugiat nullapariatur. Excepteur sint occaecat cupidatat non proident, sunt inculpa qui officia deserunt mollit anim id est laborum.`,
-    uriImg: "http://192.168.1.243/api_cdc/public/img/1.jpg",
+    uriImg: API + "/api_cdc/public/img/1.jpg",
     date: new Date(),
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -126,19 +122,30 @@ const setPublicity = async () => {
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.`,
   };
-  await axios
-    .postForm("http://192.168.1.243/api_cdc/publicity/", fields)
-    .then((response) => {
-      console.log(response.data);
-    });
+  await axios.postForm(API + "/api_cdc/publicity/", fields).then((response) => {
+    console.log(response.data);
+  });
 };
 
 const getTOken = async () => {
-  await axios
-    .get("http://192.168.1.243/api_cdc/notify/62c9c0c10b0d2")
-    .then((response) => {
-      console.log(response.data[0].body);
-    });
+  await axios.get(API + "/api_cdc/notify/62c9c0c10b0d2").then((response) => {
+    console.log(response.data[0].body);
+  });
+};
+
+const getActividades = async () => {
+  const data = await axios.get(API + "/acti");
+  return data;
+};
+
+const getActividad = async (id) => {
+  const data = await axios.get(API + "/acti/" + id);
+  return data;
+};
+
+const searchActi = async (searchInput: any) => {
+  const data = await axios.postForm(API + "/acti/search", searchInput);
+  return data;
 };
 
 export {
@@ -150,5 +157,8 @@ export {
   sendEmail,
   setNotify,
   setPublicity,
-  setActividad
+  setActividad,
+  getActividades,
+  getActividad,
+  searchActi
 };

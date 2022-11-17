@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-import { FontAwesome } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 
 import ModalViewDesc from "../ModalDescView";
 import COLORS from "../util/Colors";
@@ -20,7 +20,7 @@ const NotifyItem = ({ item }: any) => {
           style={styles.card}
         >
           <View style={{ width: "20%" }}>
-            <FontAwesome name={"bell-o"} style={styles.icon} />
+            <Feather name={"bell"} style={styles.icon} />
           </View>
           <View style={styles.distributor}>
             <Text style={[FONTS.subTitle, { color: COLORS.gray }]}>

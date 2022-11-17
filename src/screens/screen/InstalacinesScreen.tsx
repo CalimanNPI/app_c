@@ -21,7 +21,6 @@ const InstalacionesScreen = () => {
     <Layout>
       <FlatList
         data={instalaciones}
-        style={{ marginTop: 10 }}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item: any) => {
           return item.id;
@@ -49,7 +48,7 @@ const InstalacionesScreen = () => {
               />
               <View style={styles.cardHeader}>
                 <View>
-                  <Text style={[FONTS.subTitle, { color: COLORS.gray }]}>
+                  <Text style={[FONTS.subTitle, { color: COLORS.primaryR }]}>
                     {item.title}
                   </Text>
                   <Text style={[FONTS.body, { color: COLORS.gray }]}>
@@ -106,10 +105,11 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginRight: 5,
     fontSize: 15,
-    color: COLORS.primaryR,
+    color: COLORS.primaryR
   },
   timeContainer: {
     flexDirection: "row",
+    alignItems:"center"
   },
 });
 

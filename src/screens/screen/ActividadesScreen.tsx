@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Actividades from "../../components/actividades/Actividades";
 
 const ActividadesScreen = () => {

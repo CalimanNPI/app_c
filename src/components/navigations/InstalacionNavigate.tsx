@@ -1,26 +1,26 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import HomeScreen from "../../screens/HomeScreen";
-import PublicityDesc from "../publications/PublicityDesc";
+import InstalacinesScreen from "../../screens/screen/InstalacinesScreen";
+import InstalacioneDesc from "../instalaciones/InstalacioneDesc";
 
 import COLORS from "../util/Colors";
 
 const Stack = createNativeStackNavigator();
 
-const NavigationHome = () => {
+const NavigationInstalacines = () => {
   return (
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen
-        name="HomeScreen"
-        component={HomeScreen}
+        name="InstalacinesScreen"
+        component={InstalacinesScreen}
         options={() => ({
           headerShown: false,
         })}
       />
       <Stack.Screen
-        name="PublicityDesc"
-        component={PublicityDesc}
+        name="InstalacioneDesc"
+        component={InstalacioneDesc}
         options={() => ({
           title: "",
           headerTitleStyle: {
@@ -35,4 +35,4 @@ const NavigationHome = () => {
   );
 };
 
-export default NavigationHome;
+export default NavigationInstalacines;

@@ -1,198 +1,175 @@
-import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableHighlight,
-  Image,
-  Alert,
-  ScrollView,
-  TextInput,
-  FlatList,
-} from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { AntDesign, Feather } from "@expo/vector-icons";
+import { P_DATA } from "@env";
+
+import Layout from "../Layout";
+import { getActividad } from "../../api/api";
+import ImageZoom from "../ImageZoom";
 import COLORS from "../util/Colors";
+import FONTS from "../util/Fonts";
 
-import { setActividad } from "../../api/api";
+const Actividades = ({ route }: any) => {
+  const [actividad, setActividad] = useState([]);
 
-const data = [
-  {
-    id: 1,
-    icon: "https://img.icons8.com/color/70/000000/cottage.png",
-    description: "Lorem ipsum dolor sit amet, indu consectetur adipiscing elit",
-  },
-  {
-    id: 2,
-    icon: "https://img.icons8.com/color/70/000000/administrator-male.png",
-    description: "Lorem ipsum dolor sit amet, indu consectetur adipiscing elit",
-  },
-  {
-    id: 3,
-    icon: "https://img.icons8.com/color/70/000000/filled-like.png",
-    description: "Lorem ipsum dolor sit amet, indu consectetur adipiscing elit",
-  },
-  {
-    id: 4,
-    icon: "https://img.icons8.com/color/70/000000/facebook-like.png",
-    description: "Lorem ipsum dolor sit amet, indu consectetur adipiscing elit",
-  },
-  {
-    id: 5,
-    icon: "https://img.icons8.com/color/70/000000/shutdown.png",
-    description: "Lorem ipsum dolor sit amet, indu consectetur adipiscing elit",
-  },
-  {
-    id: 6,
-    icon: "https://img.icons8.com/color/70/000000/traffic-jam.png",
-    description: "Lorem ipsum dolor sit amet, indu consectetur adipiscing elit",
-  },
-  {
-    id: 7,
-    icon: "https://img.icons8.com/dusk/70/000000/visual-game-boy.png",
-    description: "Lorem ipsum dolor sit amet, indu consectetur adipiscing elit",
-  },
-  {
-    id: 8,
-    icon: "https://img.icons8.com/flat_round/70/000000/cow.png",
-    description: "Lorem ipsum dolor sit amet, indu consectetur adipiscing elit",
-  },
-  {
-    id: 9,
-    icon: "https://img.icons8.com/color/70/000000/coworking.png",
-    description: "Lorem ipsum dolor sit amet, indu consectetur adipiscing elit",
-  },
-];
-
-const Actividades = () => {
-  const onClickListener = (viewId) => {
-    setActividad();
-    Alert.alert("Alert", "Button pressed " + viewId);
+  const onLoadData = async () => {
+    const data = await getActividad(route.params.id);
+    setActividad(data.data);
   };
 
+  useEffect(() => {
+    onLoadData();
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <View style={styles.formContent}>
-        <View style={styles.inputContainer}>
-          <Image
-            style={[styles.icon, styles.inputIcon]}
-            source={{
-              uri: "https://img.icons8.com/search/androidL/100/2ecc71",
-            }}
-          />
-          <TextInput
-            style={styles.inputs}
-            placeholder="Search"
-            underlineColorAndroid="transparent"
-          />
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <Layout>
+        <View style={styles.imageContent}>
+          <ImageZoom image={P_DATA + "instalaciones/Tatami.jpg"} />
         </View>
 
-        <TouchableHighlight
-          style={styles.saveButton}
-          onPress={() => onClickListener("search")}
-        >
-          <Image
-            style={[styles.icon, styles.iconBtnSearch]}
-            source={{
-              uri: "https://img.icons8.com/search/androidL/100/ffffff",
-            }}
-          />
-        </TouchableHighlight>
-      </View>
-
-      <FlatList
-        style={styles.activityList}
-        data={data}
-        renderItem={({ item }) => {
-          return (
-            <View style={styles.activityBox}>
-              <Image style={styles.image} source={{ uri: item.icon }} />
-
-              <Text style={styles.description}>{item.description}</Text>
+        {actividad.map((value: any, index) => (
+          <View style={styles.card} key={index}>
+            <View style={styles.titleContent}>
+              <Text style={[FONTS.title, { color: COLORS.primaryB }]}>
+                {value.actividad.trim()}
+              </Text>
+              <AntDesign name="codesquareo" size={30} color={COLORS.primaryB} />
             </View>
-          );
-        }}
-      />
-    </View>
+            <View style={styles.content}>
+              <Feather name="map-pin" size={24} color={COLORS.primaryB} />
+              <Text style={[FONTS.body, { color: COLORS.gray, marginLeft: 5 }]}>
+                {value.ubicacion.trim()}
+              </Text>
+            </View>
+            <View style={styles.content}>
+              <Feather name="activity" size={20} color={COLORS.primaryB} />
+              <Text style={[FONTS.body, { color: COLORS.gray, marginLeft: 5 }]}>
+                {value.niveles.trim()}
+              </Text>
+            </View>
+            <View style={styles.content}>
+              <Feather name="user" size={20} color={COLORS.primaryB} />
+              <Text style={[FONTS.body, { color: COLORS.gray, marginLeft: 5 }]}>
+                {value.edad.trim()}
+              </Text>
+            </View>
+            <View style={styles.content}>
+              <Feather name="calendar" size={24} color={COLORS.primaryB} />
+              <Text style={[FONTS.body, { color: COLORS.gray, marginLeft: 5 }]}>
+                {value.fecha.trim()}
+              </Text>
+            </View>
+          </View>
+        ))}
+
+        <View style={[styles.cardContent, styles.tagsContent]}>
+          <View style={styles.btnColor}>
+            <Feather name="info" size={24} color={COLORS.white} />
+            <Text
+              style={[FONTS.subTitle, { color: COLORS.white, marginLeft: 10 }]}
+            >
+              Coordinación
+            </Text>
+          </View>
+          <View style={styles.btnColor}>
+            <Feather name="info" size={24} color={COLORS.white} />
+            <Text
+              style={[FONTS.subTitle, { color: COLORS.white, marginLeft: 10 }]}
+            >
+              Agilidad
+            </Text>
+          </View>
+          <View style={styles.btnColor}>
+            <Feather name="info" size={24} color={COLORS.white} />
+            <Text
+              style={[FONTS.subTitle, { color: COLORS.white, marginLeft: 10 }]}
+            >
+              Equilibrio
+            </Text>
+          </View>
+          <View style={styles.btnColor}>
+            <Feather name="info" size={24} color={COLORS.white} />
+            <Text
+              style={[FONTS.subTitle, { color: COLORS.white, marginLeft: 10 }]}
+            >
+              Reduce el estrés
+            </Text>
+          </View>
+          <View style={styles.btnColor}>
+            <Feather name="info" size={24} color={COLORS.white} />
+            <Text
+              style={[FONTS.subTitle, { color: COLORS.white, marginLeft: 10 }]}
+            >
+              Flexibilidad
+            </Text>
+          </View>
+        </View>
+
+        <View style={styles.textContent}>
+          <Text style={[FONTS.title]}>Actividad</Text>
+        </View>
+
+        <View style={styles.cardDesc}>
+          <View style={styles.cardContent}>
+            <Text style={[FONTS.desc]}>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel non
+              vitae quis facere illo numquam, quos quam repellendus voluptatibus
+              inventore beatae, ab sequi optio ea dicta eos amet! Id, beatae.
+            </Text>
+          </View>
+        </View>
+      </Layout>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLORS.white,
-  },
-  formContent: {
+  imageContent: { width: "100%", height: 250 },
+  cardContent: {
+    margin: 20,
     flexDirection: "row",
-    marginTop: 30,
   },
-  inputContainer: {
-    backgroundColor: COLORS.white,
-    borderBottomColor: COLORS.primaryR,
-    borderRadius: 30,
-    borderWidth: 1,
-    height: 45,
-    flexDirection: "row",
-    alignItems: "center",
-    flex: 1,
-    margin: 10,
-  },
-  icon: {
-    width: 30,
-    height: 30,
-  },
-  iconBtnSearch: {
-    alignSelf: "center",
-  },
-  inputs: {
-    height: 45,
-    marginLeft: 16,
-    borderBottomColor: COLORS.primaryR,
-    flex: 1,
-  },
-  inputIcon: {
-    marginLeft: 15,
-    justifyContent: "center",
-  },
-  saveButton: {
-    height: 45,
-    justifyContent: "center",
-    alignItems: "center",
-    margin: 10,
-    width: 70,
-    alignSelf: "flex-end",
-    backgroundColor: COLORS.primaryRLight,
-    borderRadius: 30,
-  },
-  saveButtonText: {
-    color: COLORS.white,
-  },
-  activityList: {
-    marginTop: 20,
+  cardDesc: {
+    marginHorizontal: 10,
+    marginVertical: 20,
+    marginTop: 10,
     padding: 10,
-  },
-  activityBox: {
-    padding: 20,
-    marginTop: 5,
-    marginBottom: 5,
-    backgroundColor: COLORS.white,
     flexDirection: "row",
-    borderRadius: 10,
-    shadowColor: COLORS.gray,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 6,
+    borderRadius: 20,
+    backgroundColor: COLORS.white,
   },
-  image: {
-    width: 45,
-    height: 45,
+  card: {
+    width: "90%",
+    marginHorizontal: 20,
+    padding: 20,
+    flexDirection: "column",
+    borderRadius: 30,
+    backgroundColor: COLORS.white,
+    position: "absolute",
+    top: 170,
+    zIndex: 2,
   },
-  description: {
-    fontSize: 18,
-    color: COLORS.gray,
-    marginLeft: 10,
+  titleContent: { flexDirection: "row", justifyContent: "space-between" },
+  content: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 10,
+  },
+  tagsContent: {
+    marginTop: 150,
+    flexWrap: "wrap",
+    marginHorizontal: 10,
+  },
+  btnColor: {
+    padding: 10,
+    borderRadius: 40,
+    marginHorizontal: 3,
+    backgroundColor: COLORS.primaryB,
+    marginTop: 5,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
   },
 });
 

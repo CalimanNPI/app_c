@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import TramitesNavigate from "../../components/navigations/TramitesNavigate";
 
 const TramitesScreen = () => {

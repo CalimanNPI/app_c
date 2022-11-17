@@ -35,7 +35,7 @@ const InstalacioneDesc = ({ route }: any) => {
         </TouchableOpacity>
 
         <View style={styles.titleContent}>
-          <Text style={[FONTS.subTitle, { color: COLORS.gray }]}>
+          <Text style={[FONTS.subTitle, { color: COLORS.primaryR }]}>
             {route.params.title}
           </Text>
           <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 5 }]}>
@@ -43,7 +43,7 @@ const InstalacioneDesc = ({ route }: any) => {
           </Text>
         </View>
         <View style={styles.descriptionContent}>
-          <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 5 }]}>
+          <Text style={[FONTS.body, { color: COLORS.gray}]}>
             {route.params.desc}
           </Text>
         </View>
@@ -61,21 +61,21 @@ const InstalacioneDesc = ({ route }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.white,
     width: "100%",
   },
   imageContent: { width: "100%", height: 200 },
   titleContent: {
     width: "100%",
-    height: 100,
     marginHorizontal: 30,
     marginTop: 30,
     padding: 10,
   },
   descriptionContent: {
-    height: 100,
-    marginHorizontal: 20,
-    paddingHorizontal: 20,
+    marginHorizontal: 10,
+    padding: 20,
+    flexDirection: "row",
+    borderRadius: 20,
+    backgroundColor: COLORS.white,
   },
   overlayContent: {
     flex: 1,

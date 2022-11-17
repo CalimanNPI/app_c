@@ -3,65 +3,65 @@ import { P_DATA } from "@env";
 export const reglamentos = [
   {
     id: 1,
-    title: "Reglamento general de usuarios",
+    title: "Reglamento general de .",
     pdf: P_DATA + "reglamento/rgeneral.pdf",
     image: P_DATA + "reglamento/img/usuario.jpg",
   },
   {
     id: 2,
-    title: "Protocolo de Seguridad Sanitaria CDC",
+    title: "Protocolo de Seguridad Sanitaria CDC.",
     pdf: P_DATA + "reglamento/Protocolos_de_Seguridad_Sanitaria_CDC.pdf",
     image: P_DATA + "reglamento/img/Seguridad_Sanitaria.jpg",
   },
   {
     id: 3,
-    title: "Reglamento Canchas de Tenis",
+    title: "Reglamento Canchas de Tenis.",
     pdf: P_DATA + "reglamento/Rtenis.pdf",
     image: P_DATA + "reglamento/img/Tenis.jpg",
   },
   {
     id: 4,
-    title: "Reglamento Alberca y Chapoteadero",
+    title: "Reglamento Alberca y Chapoteadero.",
     pdf: P_DATA + "reglamento/ralberca.pdf",
     image: P_DATA + "reglamento/img/Alberca.jpg",
   },
 
   {
     id: 6,
-    title: "Reglamento Área Infantil",
+    title: "Reglamento Área Infantil.",
     pdf: P_DATA + "reglamento/rjuegos.pdf",
     image: P_DATA + "reglamento/img/Areainfantil.jpg",
   },
   {
     id: 7,
-    title: "Reglamento Pista Para Correr",
+    title: "Reglamento Pista Para Correr.",
     pdf: P_DATA + "reglamento/pistaparacorrer.pdf",
     image: P_DATA + "reglamento/img/Pistacorrer.jpg",
   },
   {
     id: 8,
     title:
-      "Reglamento de Vestidores Damas, Caballeros, Discapacitados e Infantiles",
+      "Reglamento de Vestidores Damas, Caballeros, Discapacitados e Infantiles.",
     pdf: P_DATA + "reglamento/rvestidores.pdf",
     image: P_DATA + "reglamento/img/Vestidores.jpg",
   },
   {
     id: 5,
     title:
-      "Reglamento de Gimnasio de Pesas, Ludoteca y Salones de Actividades Deportivas",
+      "Reglamento de Gimnasio de Pesas, Ludoteca y Salones de Actividades Deportivas.",
     pdf: P_DATA + "reglamento/rpesas.pdf",
     image: P_DATA + "reglamento/img/GYM.jpg",
   },
   {
     id: 9,
-    title: "Reglamento Servicio de Nutricón y Servicio de inBody",
+    title: "Reglamento Servicio de Nutricón y Servicio de inBody.",
     pdf: P_DATA + "reglamento/Reglamento_Servicio_De_Nutricion.pdf",
     image: P_DATA + "reglamento/img/Nutricon.jpg",
   },
   {
     id: 12,
     title:
-      "Procedimiento de Entrada y Salida de los Deportistas Participantes de los Juegos bancaros y sus Invitados",
+      "Procedimiento de Entrada y Salida de los Deportistas Participantes de los Juegos bancaros y sus Invitados.",
     pdf:
       P_DATA +
       "reglamento/PROCEDIMIENTO ENTRADA Y SALIDA DEPORTISTAS JUEGOS BANCARIO.pdf",
@@ -69,27 +69,27 @@ export const reglamentos = [
   },
   {
     id: 10,
-    title: "Reglamento Estacionamiento",
+    title: "Reglamento Estacionamiento.",
     pdf: P_DATA + "reglamento/Estacionamiento.pdf",
     image: P_DATA + "reglamento/img/Estacionamiento.jpg",
   },
 
   {
     id: 11,
-    title: "Reglamento Deportistas de los Equipos Representativos",
+    title: "Reglamento Deportistas de los Equipos Representativos.",
     pdf: P_DATA + "reglamento/Reglamento Deportistas.pdf",
     image: P_DATA + "reglamento/img/Juegosbancaros.png",
   },
 
   {
     id: 13,
-    title: "Aviso de Privacidad Corto Página de Internet",
+    title: "Aviso de Privacidad Corto Página de Internet.",
     pdf: P_DATA + "reglamento/avisocdcac_c.pdf",
     image: P_DATA + "reglamento/img/AvisoPrivacidad.jpg",
   },
   {
     id: 14,
-    title: "Aviso de Privacidad Íntegro Página de Internet",
+    title: "Aviso de Privacidad Íntegro Página de Internet.",
     pdf: P_DATA + "reglamento/avisocdcac_i.pdf",
     image: P_DATA + "reglamento/img/AvisoPrivacidad.jpg",
   },
@@ -98,7 +98,7 @@ export const reglamentos = [
 export const instalaciones = [
   {
     id: 1,
-    title: "Gimnasio de Pesas",
+    title: "GIMNASIO DE PESAS",
     time: "2018-08-01 12:15 pm",
     image: [
       {
@@ -127,11 +127,11 @@ export const instalaciones = [
       },
     ],
     description:
-      "El Gimnasio de Pesas cuenta con todos los equipos y aparatos necesarios para fortalecer y moldear tu figura.",
+      "El gimnasio de Pesas cuenta con todos los equipos y aparatos necesarios para fortalecer y moldear tu figura.",
   },
   {
     id: 2,
-    title: "Canchas de Tenis",
+    title: "CANCHAS DE TENIS",
     time: "2018-08-01 12:15 pm",
     image: [
       {
@@ -168,7 +168,7 @@ export const instalaciones = [
       },
     ],
     description:
-      "El Centro Deportivo cuenta con 6 canchas con superficie de arcilla para la práctica del tenis; 3 de ellas se encuentran techadas y 3 al aire libre.",
+      "Cuenta con 6 canchas con superficie de arcilla para la práctica del tenis; 3 de ellas se encuentran techadas y 3 al aire libre.",
   },
 ];
 
@@ -319,51 +319,51 @@ export const horario = [
 ];
 
 export const cuotas = [
-  { id: 1, name: "Trámite de credencial", status: "active", cost: "180,00" },
-  { id: 2, name: "Reposición de credencial", status: "active", cost: "245,00" },
-  { id: 3, name: "Extravío de toalla", status: "active", cost: "245,00" },
-  { id: 4, name: "Extravío de placa", status: "active", cost: "127,00" },
+  { id: 1, name: "Trámite de credencial.", status: "active", cost: "180,00" },
+  { id: 2, name: "Reposición de credencial.", status: "active", cost: "245,00" },
+  { id: 3, name: "Extravío de toalla.", status: "active", cost: "245,00" },
+  { id: 4, name: "Extravío de placa.", status: "active", cost: "127,00" },
   {
     id: 5,
-    name: "Extravío de boleto de estacionamiento",
+    name: "Extravío de boleto de estacionamiento.",
     status: "active",
     cost: "180,00",
   },
-  { id: 6, name: "Servicio de toalla", status: "active", cost: "10,00" },
+  { id: 6, name: "Servicio de toalla.", status: "active", cost: "10,00" },
   {
     id: 7,
-    name: "Estacionamiento por fracciones de 15 minutos",
+    name: "Estacionamiento por fracciones de 15 minutos.",
     status: "active",
     cost: "$4,00",
   },
   {
     id: 8,
-    name: "Estacionamiento por fracciones de 15 minutos (MOTOS)",
+    name: "Estacionamiento por fracciones de 15 minutos (MOTOS).",
     status: "active",
     cost: "2,50",
   },
   {
     id: 9,
-    name: "Prueba de InBody® usuarios e inivitados",
+    name: "Prueba de InBody® usuarios e inivitados.",
     status: "active",
     cost: "5,00",
   },
   { id: 10, name: "Una cita de Nutrición", status: "active", cost: "514,00" },
   {
     id: 11,
-    name: "Una cita de Nutrición invitados",
+    name: "Una cita de Nutrición invitados.",
     status: "active",
     cost: "599,00",
   },
   {
     id: 12,
-    name: "Paquete de 4 citas de Nutrición	",
+    name: "Paquete de 4 citas de Nutrición.",
     status: "active",
     cost: "1.542,00",
   },
   {
     id: 13,
-    name: "Paquete de 4 citas de Nutrición Invitados	",
+    name: "Paquete de 4 citas de Nutrición Invitados.",
     status: "active",
     cost: "1.797,00",
   },
@@ -371,54 +371,54 @@ export const cuotas = [
   { id: 15, name: "Adulto", status: "active", cost: "240,00" },
   {
     id: 16,
-    name: "Niños y estudiantes con credencial menores de 25 años	",
+    name: "Niños y estudiantes con credencial menores de 25 años.",
     status: "active",
     cost: "180,00",
   },
-  { id: 17, name: "Mayores de 60 años", status: "active", cost: "180,00" },
+  { id: 17, name: "Mayores de 60 años.", status: "active", cost: "180,00" },
   { id: 18, name: "Pase de visitas fines de semana:", status: "", cost: "" },
-  { id: 19, name: "Adulto", status: "active", cost: "240,00" },
+  { id: 19, name: "Adulto.", status: "active", cost: "240,00" },
   {
     id: 20,
-    name: "Niños y estudiantes con credencial menores de 25 años	",
+    name: "Niños y estudiantes con credencial menores de 25 años.",
     status: "active",
     cost: "350,00",
   },
-  { id: 21, name: "Mayores de 60 años	", status: "active", cost: "180,00" },
+  { id: 21, name: "Mayores de 60 años.", status: "active", cost: "180,00" },
 ];
 
 export const menus = [
   {
     id: 1,
-    title: "Menú del día",
+    title: "MENÚ DEL DÍA",
     desc: "Los sabores que te harán sentir bien. ",
     image: P_DATA + "menus/img/dia.png",
     pdf: P_DATA + "menus/Menu-Infantil.pdf",
   },
   {
     id: 2,
-    title: "Menú de desayunos",
+    title: "MENÚ DE DESAYUNOS",
     desc: "Los sabores que te harán sentir bien. ",
     image: P_DATA + "menus/img/desayunos.png",
     pdf: P_DATA + "menus/Menu-De-Desayunos.pdf",
   },
   {
     id: 3,
-    title: "Menú comidas y cenas",
+    title: "MENÚ COMIDAS Y CENAS",
     desc: "Los sabores que te harán sentir bien. ",
     image: P_DATA + "menus/img/comidas.png",
     pdf: P_DATA + "menus/Menu-De-Comida-y-Cenas.pdf",
   },
   {
     id: 4,
-    title: "Menú infantil",
+    title: "MENÚ INFANTIL",
     desc: "Los sabores que te harán sentir bien. ",
     image: P_DATA + "menus/img/infantil.png",
     pdf: P_DATA + "menus/Menu-Infantil.pdf",
   },
   {
     id: 5,
-    title: "Menú de comida rapida",
+    title: "MENÚ DE COMIDA RAPIDA",
     desc: "Los sabores que te harán sentir bien. ",
     image: P_DATA + "menus/img/fast.png",
     pdf: P_DATA + "menus/Menu-De-Comida-Rapida.pdf",
@@ -428,25 +428,25 @@ export const menus = [
 export const valores = [
   {
     id: 1,
-    title: "Honestidad",
+    title: "HONESTIDAD",
     desc: `Con nosotros mismos y con nuestros compañeros, es una cualidad que consiste en comportarse y expresarse con sinceridad y coherencia (decir la verdad).`,
     image: "https://img.icons8.com/cute-clipart/64/fffffff/facebook-like.png",
   },
   {
     id: 2,
-    title: "Justicia",
+    title: "JUSTICIA",
     desc: `Hacia nuestro personal, tanto en el trato como en la asignación de actividades a realizar, dependiendo estas de la capacidad de cada uno de ellos.`,
     image: "https://img.icons8.com/cute-clipart/64/000000/facebook-like.png",
   },
   {
     id: 3,
-    title: "Confianza",
+    title: "CONFIANZA",
     desc: `En que realizáremos nuestras labores de la mejor manera, con la finalidad de satisfacer a nuestros usuarios.    `,
     image: "https://img.icons8.com/cute-clipart/64/000000/facebook-like.png",
   },
   {
     id: 4,
-    title: "Compromiso",
+    title: "COMPROMISO",
     desc: `Con nuestros usuarios, al brindarles un servicio de calidad; con la sociedad, al brindar estabilidad a las familias de nuestro personal y con el medio ambiente al respetar y cumplir todas las normas establecidas para el cuidado de éste.    `,
     image: "https://img.icons8.com/cute-clipart/64/000000/facebook-like.png",
   },

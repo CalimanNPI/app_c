@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   StyleSheet,
   Text,
@@ -6,127 +6,236 @@ import {
   TouchableHighlight,
   Image,
   Alert,
-  ScrollView,
   TextInput,
   FlatList,
+  TouchableOpacity,
+  RefreshControl,
 } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+
+import { getActividades, searchActi } from "../../api/api";
 import COLORS from "../util/Colors";
+import FONTS from "../util/Fonts";
+import Layout from "../Layout";
 
-import { setActividad } from "../../api/api";
-
-const data = [
-  {
-    id: 1,
-    icon: "https://img.icons8.com/color/70/000000/cottage.png",
-    description: "Lorem ipsum dolor sit amet, indu consectetur adipiscing elit",
-  },
-  {
-    id: 2,
-    icon: "https://img.icons8.com/color/70/000000/administrator-male.png",
-    description: "Lorem ipsum dolor sit amet, indu consectetur adipiscing elit",
-  },
-  {
-    id: 3,
-    icon: "https://img.icons8.com/color/70/000000/filled-like.png",
-    description: "Lorem ipsum dolor sit amet, indu consectetur adipiscing elit",
-  },
-  {
-    id: 4,
-    icon: "https://img.icons8.com/color/70/000000/facebook-like.png",
-    description: "Lorem ipsum dolor sit amet, indu consectetur adipiscing elit",
-  },
-  {
-    id: 5,
-    icon: "https://img.icons8.com/color/70/000000/shutdown.png",
-    description: "Lorem ipsum dolor sit amet, indu consectetur adipiscing elit",
-  },
-  {
-    id: 6,
-    icon: "https://img.icons8.com/color/70/000000/traffic-jam.png",
-    description: "Lorem ipsum dolor sit amet, indu consectetur adipiscing elit",
-  },
-  {
-    id: 7,
-    icon: "https://img.icons8.com/dusk/70/000000/visual-game-boy.png",
-    description: "Lorem ipsum dolor sit amet, indu consectetur adipiscing elit",
-  },
-  {
-    id: 8,
-    icon: "https://img.icons8.com/flat_round/70/000000/cow.png",
-    description: "Lorem ipsum dolor sit amet, indu consectetur adipiscing elit",
-  },
-  {
-    id: 9,
-    icon: "https://img.icons8.com/color/70/000000/coworking.png",
-    description: "Lorem ipsum dolor sit amet, indu consectetur adipiscing elit",
-  },
-];
+const wait = (timeout: any) => {
+  return new Promise((resolve) => setTimeout(resolve, timeout));
+};
 
 const Actividades = () => {
-  const onClickListener = (viewId) => {
-    setActividad();
-    Alert.alert("Alert", "Button pressed " + viewId);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
+
+  const [actividades, setActividades] = useState([]);
+  const [searchInput, setSearchInput] = useState({ search: "" });
+  const [searchData, setSearchData] = useState([]);
+
+  const navigation = useNavigation();
+
+  const onLoadData = async () => {
+    const data = await getActividades();
+    setActividades(data.data);
+    //Alert.alert("Alert", "Button pressed ");
+  };
+
+  const alertData = () => {
+    alert(JSON.stringify(searchInput));
+  };
+
+  const handleChange = (name: any, value: any) => {
+    setSearchInput({ ...searchInput, [name]: value });
+    search();
+  };
+
+  useEffect(() => {
+    onLoadData();
+  }, [refreshing]);
+
+  const search = async () => {
+    if (searchInput.search) {
+      const data = await searchActi(searchInput);
+      setSearchData(data.data);
+    } else {
+      setSearchData([]);
+    }
   };
 
   return (
-    <View style={styles.container}>
+    <Layout>
       <View style={styles.formContent}>
         <View style={styles.inputContainer}>
-          <Image
-            style={[styles.icon, styles.inputIcon]}
-            source={{
-              uri: "https://img.icons8.com/search/androidL/100/2ecc71",
-            }}
-          />
           <TextInput
-            style={styles.inputs}
+            style={[styles.inputs]}
             placeholder="Search"
             underlineColorAndroid="transparent"
+            value={searchInput.search}
+            onChangeText={(text: string) => handleChange("search", text)}
           />
         </View>
 
-        <TouchableHighlight
-          style={styles.saveButton}
-          onPress={() => onClickListener("search")}
-        >
-          <Image
-            style={[styles.icon, styles.iconBtnSearch]}
-            source={{
-              uri: "https://img.icons8.com/search/androidL/100/ffffff",
-            }}
-          />
+        <TouchableHighlight style={styles.saveButton} onPress={() => search()}>
+          <AntDesign name="search1" size={24} color={COLORS.white} />
         </TouchableHighlight>
       </View>
 
-      <FlatList
-        style={styles.activityList}
-        data={data}
-        renderItem={({ item }) => {
-          return (
-            <View style={styles.activityBox}>
-              <Image style={styles.image} source={{ uri: item.icon }} />
+      <View style={styles.container}>
+        {searchData.length >= 1 ? (
+          <FlatList
+            style={styles.contentList}
+            data={searchData}
+            keyExtractor={(item: any) => {
+              return item.id;
+            }}
+            renderItem={({ item }: any) => {
+              return (
+                <TouchableOpacity
+                  style={styles.card}
+                  onPress={() => {
+                    navigation.navigate("Activity", { id: item.numero });
+                  }}
+                >
+                  <Image
+                    style={styles.image}
+                    source={{
+                      uri: "https://img.icons8.com/color/70/000000/cottage.png",
+                    }}
+                  />
+                  <View style={styles.cardContent}>
+                    <Text style={[FONTS.body, { color: COLORS.primaryB }]}>
+                      {item.actividad.trim()}
+                    </Text>
+                    <Text style={[FONTS.body, { color: COLORS.gray }]}>
+                      {item.niveles.trim()}
+                    </Text>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        margin: 5,
+                        alignItems: "center",
+                      }}
+                    >
+                      <AntDesign
+                        name="clockcircleo"
+                        size={15}
+                        color={COLORS.grayR}
+                      />
+                      <Text
+                        style={[
+                          FONTS.body,
+                          { color: COLORS.grayT0_3, marginLeft: 5 },
+                        ]}
+                      >
+                        {item.horini.trim() +
+                          " - " +
+                          item.horfin.trim() +
+                          " hrs"}
+                      </Text>
+                    </View>
+                    <Text style={[FONTS.desc, { color: COLORS.gray }]}>
+                      {item.ubicacion.trim()}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              );
+            }}
+            refreshControl={
+              <RefreshControl
+                refreshing={refreshing}
+                onRefresh={onRefresh}
+                colors={[COLORS.primaryR]}
+                progressBackgroundColor={COLORS.white}
+              />
+            }
+          />
+        ) : (
+          <FlatList
+            style={styles.contentList}
+            data={actividades}
+            keyExtractor={(item: any) => {
+              return item.id;
+            }}
+            renderItem={({ item }: any) => {
+              return (
+                <TouchableOpacity
+                  style={styles.card}
+                  onPress={() => {
+                    navigation.navigate("Activity", { id: item.numero });
+                  }}
+                >
+                  <Image
+                    style={styles.image}
+                    source={{
+                      uri: "https://img.icons8.com/color/70/000000/cottage.png",
+                    }}
+                  />
+                  <View style={styles.cardContent}>
+                    <Text style={[FONTS.body, { color: COLORS.primaryB }]}>
+                      {item.actividad.trim()}
+                    </Text>
+                    <Text style={[FONTS.body, { color: COLORS.gray }]}>
+                      {item.niveles.trim()}
+                    </Text>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        margin: 5,
+                        alignItems: "center",
+                      }}
+                    >
+                      <AntDesign
+                        name="clockcircleo"
+                        size={15}
+                        color={COLORS.grayR}
+                      />
+                      <Text
+                        style={[
+                          FONTS.body,
+                          { color: COLORS.grayT0_3, marginLeft: 5 },
+                        ]}
+                      >
+                        {item.horini.trim() +
+                          " - " +
+                          item.horfin.trim() +
+                          " hrs"}
+                      </Text>
+                    </View>
 
-              <Text style={styles.description}>{item.description}</Text>
-            </View>
-          );
-        }}
-      />
-    </View>
+                    <Text style={[FONTS.desc, { color: COLORS.gray }]}>
+                      {item.precio.trim()}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              );
+            }}
+            refreshControl={
+              <RefreshControl
+                refreshing={refreshing}
+                onRefresh={onRefresh}
+                colors={[COLORS.primaryR]}
+                progressBackgroundColor={COLORS.white}
+              />
+            }
+          />
+        )}
+      </View>
+    </Layout>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLORS.white,
-  },
   formContent: {
     flexDirection: "row",
-    marginTop: 30,
+    marginTop: 10,
+    backgroundColor: COLORS.white,
   },
   inputContainer: {
     backgroundColor: COLORS.white,
-    borderBottomColor: COLORS.primaryR,
+    borderColor: COLORS.gray,
     borderRadius: 30,
     borderWidth: 1,
     height: 45,
@@ -135,18 +244,9 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 10,
   },
-  icon: {
-    width: 30,
-    height: 30,
-  },
-  iconBtnSearch: {
-    alignSelf: "center",
-  },
   inputs: {
     height: 45,
     marginLeft: 16,
-    borderBottomColor: COLORS.primaryR,
-    flex: 1,
   },
   inputIcon: {
     marginLeft: 15,
@@ -158,24 +258,34 @@ const styles = StyleSheet.create({
     alignItems: "center",
     margin: 10,
     width: 70,
-    alignSelf: "flex-end",
-    backgroundColor: COLORS.primaryRLight,
-    borderRadius: 30,
+    backgroundColor: COLORS.primaryB,
+    borderRadius: 15,
   },
   saveButtonText: {
     color: COLORS.white,
   },
-  activityList: {
-    marginTop: 20,
-    padding: 10,
-  },
-  activityBox: {
-    padding: 20,
-    marginTop: 5,
-    marginBottom: 5,
+
+  /** CARD */
+  container: {
+    flex: 1,
+    marginTop: 10,
     backgroundColor: COLORS.white,
-    flexDirection: "row",
-    borderRadius: 10,
+  },
+  contentList: {
+    flex: 1,
+  },
+  image: {
+    width: 90,
+    height: 90,
+    borderRadius: 45,
+    borderWidth: 1,
+    borderColor: COLORS.primaryB,
+  },
+  cardContent: {
+    marginLeft: 15,
+    marginTop: 10,
+  },
+  card: {
     shadowColor: COLORS.gray,
     shadowOffset: {
       width: 0,
@@ -183,16 +293,15 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 6,
-  },
-  image: {
-    width: 45,
-    height: 45,
-  },
-  description: {
-    fontSize: 18,
-    color: COLORS.gray,
-    marginLeft: 10,
+    elevation: 5,
+
+    marginLeft: 20,
+    marginRight: 20,
+    marginTop: 20,
+    backgroundColor: COLORS.white,
+    padding: 10,
+    flexDirection: "row",
+    borderRadius: 30,
   },
 });
 
