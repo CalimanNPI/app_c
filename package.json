@@ -49,7 +49,8 @@
     "react-native-svg": "12.3.0",
     "react-native-tab-view": "^3.3.0",
     "react-native-web": "~0.18.7",
-    "react-native-webview": "11.23.0"
+    "react-native-webview": "11.23.0",
+    "expo-screen-orientation": "~4.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

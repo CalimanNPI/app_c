@@ -3,8 +3,8 @@ import { Feather, AntDesign } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import HomeNavigate from "./HomeNavigate";
+import MainNavigate from "./MainNavigate";
 import NotificationScreen from "../../screens/NotificationScreen";
-import PerfilScreen from "../../screens/PerfilScreen";
 import COLORS from "../util/Colors";
 
 const Tab = createBottomTabNavigator();
@@ -12,7 +12,7 @@ const Tab = createBottomTabNavigator();
 const BottomNavigate = () => {
   return (
     <Tab.Navigator
-      initialRouteName="HomeNavigate"
+      initialRouteName="MainNavigate"
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }: any) => {
           let iconName;
@@ -21,7 +21,7 @@ const BottomNavigate = () => {
             return <AntDesign name="home" size={size} color={color} />;
           } else if (route.name === "Notifications") {
             return <Feather name={"bell"} size={size} color={color} />;
-          } else if (route.name === "Profile") {
+          } else if (route.name === "MainNavigate") {
             return <AntDesign name="user" size={24} color={color} />;
           }
         },
@@ -47,8 +47,8 @@ const BottomNavigate = () => {
       />
 
       <Tab.Screen
-        name="Profile"
-        component={PerfilScreen}
+        name="MainNavigate"
+        component={MainNavigate}
         options={() => ({
           headerShown: false,
         })}

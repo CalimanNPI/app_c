@@ -29,7 +29,7 @@ const UsuarioEspecial = () => {
             ></Text>
           </View>
           <View style={styles.descriptionContent}>
-            <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 5 }]}>
+            <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 5 , textAlign:"justify" }]}>
               Para el Centro Deportivo un USUARIO ESPECIAL es aquella persona
               que ha sido inscrita en el Centro Deportivo, habiendo dejado de
               ser empleado de una institución inscrita o al presentar una carta

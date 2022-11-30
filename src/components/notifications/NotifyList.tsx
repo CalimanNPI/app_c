@@ -35,7 +35,6 @@ const NotifyList = () => {
     <FlatList
       data={notifications}
       showsVerticalScrollIndicator={false}
-      inverted={true}
       renderItem={renderItem}
       keyExtractor={(item: any) => item._id}
       ItemSeparatorComponent={() => {

@@ -3,7 +3,7 @@ import { P_DATA } from "@env";
 export const reglamentos = [
   {
     id: 1,
-    title: "Reglamento general de .",
+    title: "Reglamento general de usuarios.",
     pdf: P_DATA + "reglamento/rgeneral.pdf",
     image: P_DATA + "reglamento/img/usuario.jpg",
   },
@@ -129,6 +129,7 @@ export const instalaciones = [
     description:
       "El gimnasio de Pesas cuenta con todos los equipos y aparatos necesarios para fortalecer y moldear tu figura.",
   },
+
   {
     id: 2,
     title: "CANCHAS DE TENIS",
@@ -320,7 +321,12 @@ export const horario = [
 
 export const cuotas = [
   { id: 1, name: "Trámite de credencial.", status: "active", cost: "180,00" },
-  { id: 2, name: "Reposición de credencial.", status: "active", cost: "245,00" },
+  {
+    id: 2,
+    name: "Reposición de credencial.",
+    status: "active",
+    cost: "245,00",
+  },
   { id: 3, name: "Extravío de toalla.", status: "active", cost: "245,00" },
   { id: 4, name: "Extravío de placa.", status: "active", cost: "127,00" },
   {
@@ -393,7 +399,7 @@ export const menus = [
     title: "MENÚ DEL DÍA",
     desc: "Los sabores que te harán sentir bien. ",
     image: P_DATA + "menus/img/dia.png",
-    pdf: P_DATA + "menus/Menu-Infantil.pdf",
+    pdf: P_DATA + "menus/Menu-del-dia.pdf",
   },
   {
     id: 2,
@@ -430,24 +436,24 @@ export const valores = [
     id: 1,
     title: "HONESTIDAD",
     desc: `Con nosotros mismos y con nuestros compañeros, es una cualidad que consiste en comportarse y expresarse con sinceridad y coherencia (decir la verdad).`,
-    image: "https://img.icons8.com/cute-clipart/64/fffffff/facebook-like.png",
+    icon: "sun",
   },
   {
     id: 2,
     title: "JUSTICIA",
     desc: `Hacia nuestro personal, tanto en el trato como en la asignación de actividades a realizar, dependiendo estas de la capacidad de cada uno de ellos.`,
-    image: "https://img.icons8.com/cute-clipart/64/000000/facebook-like.png",
+    icon: "feather",
   },
   {
     id: 3,
     title: "CONFIANZA",
     desc: `En que realizáremos nuestras labores de la mejor manera, con la finalidad de satisfacer a nuestros usuarios.    `,
-    image: "https://img.icons8.com/cute-clipart/64/000000/facebook-like.png",
+    icon: "umbrella",
   },
   {
     id: 4,
     title: "COMPROMISO",
     desc: `Con nuestros usuarios, al brindarles un servicio de calidad; con la sociedad, al brindar estabilidad a las familias de nuestro personal y con el medio ambiente al respetar y cumplir todas las normas establecidas para el cuidado de éste.    `,
-    image: "https://img.icons8.com/cute-clipart/64/000000/facebook-like.png",
+    icon: "zap",
   },
 ];

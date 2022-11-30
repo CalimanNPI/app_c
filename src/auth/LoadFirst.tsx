@@ -1,11 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import RegisterPushNotifications from "./RegisterPushNotifications";
-//import LoadFonts from "./fonst";
 
 const isAppFirstLaunchedC = async () => {
   const data = await AsyncStorage.getItem("@isAppFirstLaunched");
-  //console.log(data + " data");
-  //LoadFonts();
+  
 
   if (data) {
     //console.log("false 1 ");

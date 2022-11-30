@@ -26,13 +26,14 @@ const HorariosScreen = () => {
                 </Text>
               </View>
               <View style={styles.eventContent}>
-                <Text style={[FONTS.subTitle, { color: COLORS.gray }]}>
-                  {item.daySer ? item.daySer : ""}
-                </Text>
+                
                 <Text style={[FONTS.body, { color: COLORS.primaryR }]}>
                   {item.openH} - {item.closeH}
                 </Text>
-                <Text style={[FONTS.body, { color: COLORS.gray }]}>
+                <Text style={[FONTS.subTitle, { color: COLORS.gray }]}>
+                  {item.daySer ? item.daySer : ""}
+                </Text>
+                <Text style={[FONTS.desc, { color: COLORS.gray }]}>
                   {item.desc ? item.desc : "No cuenta con una descripción."}
                 </Text>
               </View>

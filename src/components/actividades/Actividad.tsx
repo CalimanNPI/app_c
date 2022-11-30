@@ -9,12 +9,15 @@ import ImageZoom from "../ImageZoom";
 import COLORS from "../util/Colors";
 import FONTS from "../util/Fonts";
 
+import Profesor from "./Profesores";
+
 const Actividades = ({ route }: any) => {
   const [actividad, setActividad] = useState([]);
 
   const onLoadData = async () => {
     const data = await getActividad(route.params.id);
     setActividad(data.data);
+    console.log(actividad);
   };
 
   useEffect(() => {
@@ -29,96 +32,104 @@ const Actividades = ({ route }: any) => {
         </View>
 
         {actividad.map((value: any, index) => (
-          <View style={styles.card} key={index}>
-            <View style={styles.titleContent}>
-              <Text style={[FONTS.title, { color: COLORS.primaryB }]}>
-                {value.actividad.trim()}
-              </Text>
-              <AntDesign name="codesquareo" size={30} color={COLORS.primaryB} />
+          <View key={index}>
+            <View style={styles.card}>
+              <View style={styles.titleContent}>
+                <Text style={[FONTS.title, { color: COLORS.primaryB }]}>
+                  {value.actividad.trim()}
+                </Text>
+                <AntDesign
+                  name="codesquareo"
+                  size={30}
+                  color={COLORS.primaryB}
+                />
+              </View>
+              <View style={styles.content}>
+                <Feather name="map-pin" size={20} color={COLORS.primaryB} />
+                <Text
+                  style={[FONTS.body, { color: COLORS.gray, marginLeft: 5 }]}
+                >
+                  {value.ubicacion.trim()}
+                </Text>
+              </View>
+              <View style={styles.content}>
+                <Feather name="activity" size={20} color={COLORS.primaryB} />
+                <Text
+                  style={[FONTS.body, { color: COLORS.gray, marginLeft: 5 }]}
+                >
+                  {value.niveles.trim()}
+                </Text>
+              </View>
+              <View style={styles.content}>
+                <Feather name="user" size={20} color={COLORS.primaryB} />
+                <Text
+                  style={[FONTS.body, { color: COLORS.gray, marginLeft: 5 }]}
+                >
+                  {value.edad.trim()}
+                </Text>
+              </View>
+              <View style={styles.content}>
+                <Feather name="calendar" size={20} color={COLORS.primaryB} />
+                <Text
+                  style={[FONTS.body, { color: COLORS.gray, marginLeft: 5 }]}
+                >
+                  {value.fecha.trim()}
+                </Text>
+              </View>
+              <View style={styles.content}>
+                <Feather name="clock" size={20} color={COLORS.primaryB} />
+                <Text
+                  style={[FONTS.body, { color: COLORS.gray, marginLeft: 5 }]}
+                >
+                  {value.horini.trim() + " - " + value.horfin.trim()}
+                </Text>
+              </View>
+
+              <View style={styles.priceContent}>
+                <View style={[styles.titleContent]}>
+                  <Text style={FONTS.body}>PRECIO POR MES:</Text>
+                  <Text style={[FONTS.subTitle, { color: COLORS.primaryB }]}>
+                    <Feather
+                      name="dollar-sign"
+                      size={20}
+                      color={COLORS.primaryB}
+                    />
+                    {value.precio.trim()}
+                  </Text>
+                </View>
+                <View style={[styles.titleContent]}>
+                  <Text style={FONTS.body}>PRECIO POR DÍA:</Text>
+                  <Text style={[FONTS.subTitle, { color: COLORS.primaryB }]}>
+                    <Feather
+                      name="dollar-sign"
+                      size={20}
+                      color={COLORS.primaryB}
+                    />
+                    {value.dia.trim()}
+                  </Text>
+                </View>
+              </View>
             </View>
-            <View style={styles.content}>
-              <Feather name="map-pin" size={24} color={COLORS.primaryB} />
-              <Text style={[FONTS.body, { color: COLORS.gray, marginLeft: 5 }]}>
-                {value.ubicacion.trim()}
-              </Text>
+
+            <View>
+              <Text style={[FONTS.title]}>Actividad</Text>
             </View>
-            <View style={styles.content}>
-              <Feather name="activity" size={20} color={COLORS.primaryB} />
-              <Text style={[FONTS.body, { color: COLORS.gray, marginLeft: 5 }]}>
-                {value.niveles.trim()}
-              </Text>
+
+            <View style={styles.cardDesc}>
+              <View style={styles.cardContent}>
+                <Text style={[FONTS.desc]}>
+                  {value.descripActi}
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel
+                  non vitae quis facere illo numquam, quos quam repellendus
+                  voluptatibus inventore beatae, ab sequi optio ea dicta eos
+                  amet! Id, beatae.
+                </Text>
+              </View>
             </View>
-            <View style={styles.content}>
-              <Feather name="user" size={20} color={COLORS.primaryB} />
-              <Text style={[FONTS.body, { color: COLORS.gray, marginLeft: 5 }]}>
-                {value.edad.trim()}
-              </Text>
-            </View>
-            <View style={styles.content}>
-              <Feather name="calendar" size={24} color={COLORS.primaryB} />
-              <Text style={[FONTS.body, { color: COLORS.gray, marginLeft: 5 }]}>
-                {value.fecha.trim()}
-              </Text>
-            </View>
+
+            <Profesor nom={value.profesor} clave={value.clave} />
           </View>
         ))}
-
-        <View style={[styles.cardContent, styles.tagsContent]}>
-          <View style={styles.btnColor}>
-            <Feather name="info" size={24} color={COLORS.white} />
-            <Text
-              style={[FONTS.subTitle, { color: COLORS.white, marginLeft: 10 }]}
-            >
-              Coordinación
-            </Text>
-          </View>
-          <View style={styles.btnColor}>
-            <Feather name="info" size={24} color={COLORS.white} />
-            <Text
-              style={[FONTS.subTitle, { color: COLORS.white, marginLeft: 10 }]}
-            >
-              Agilidad
-            </Text>
-          </View>
-          <View style={styles.btnColor}>
-            <Feather name="info" size={24} color={COLORS.white} />
-            <Text
-              style={[FONTS.subTitle, { color: COLORS.white, marginLeft: 10 }]}
-            >
-              Equilibrio
-            </Text>
-          </View>
-          <View style={styles.btnColor}>
-            <Feather name="info" size={24} color={COLORS.white} />
-            <Text
-              style={[FONTS.subTitle, { color: COLORS.white, marginLeft: 10 }]}
-            >
-              Reduce el estrés
-            </Text>
-          </View>
-          <View style={styles.btnColor}>
-            <Feather name="info" size={24} color={COLORS.white} />
-            <Text
-              style={[FONTS.subTitle, { color: COLORS.white, marginLeft: 10 }]}
-            >
-              Flexibilidad
-            </Text>
-          </View>
-        </View>
-
-        <View style={styles.textContent}>
-          <Text style={[FONTS.title]}>Actividad</Text>
-        </View>
-
-        <View style={styles.cardDesc}>
-          <View style={styles.cardContent}>
-            <Text style={[FONTS.desc]}>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel non
-              vitae quis facere illo numquam, quos quam repellendus voluptatibus
-              inventore beatae, ab sequi optio ea dicta eos amet! Id, beatae.
-            </Text>
-          </View>
-        </View>
       </Layout>
     </ScrollView>
   );
@@ -146,8 +157,8 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     borderRadius: 30,
     backgroundColor: COLORS.white,
-    position: "absolute",
-    top: 170,
+    position: "relative",
+    top: -20,
     zIndex: 2,
   },
   titleContent: { flexDirection: "row", justifyContent: "space-between" },
@@ -170,6 +181,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
+  },
+  priceContent: {
+    borderColor: COLORS.primaryB,
+    borderTopWidth: 2,
+    marginTop: 10,
+    paddingTop: 10,
+    flexDirection: "column",
+    justifyContent: "space-evenly",
   },
 });
 

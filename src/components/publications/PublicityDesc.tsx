@@ -12,6 +12,7 @@ const PublicityDesc = ({ route }: any) => {
 
   const getPublicity = async () => {
     const data = await getPublicityDesc(route.params.id);
+    console.log(data.data);
     setPublicity(data.data);
   };
 
@@ -47,23 +48,18 @@ const renderItem = ({ item }: any) => {
       </View>
 
       <View style={styles.titleContent}>
-        <Text style={[FONTS.subTitle, { color: COLORS.gray }]}>
+        <Text style={[FONTS.title, { color: COLORS.primaryB }]}>
           {item.title}
         </Text>
-        <Text style={[FONTS.body, { color: COLORS.gray, marginTop: 5 }]}>
+        {/*<Text style={[FONTS.body, { color: COLORS.gray, marginTop: 5 }]}>
           HORA
-        </Text>
+  </Text>*/}
       </View>
       <View style={styles.descriptionContent}>
-        <Text
-          style={[
-            FONTS.body,
-            { color: COLORS.gray, marginTop: 5, textAlign: "left" },
-          ]}
-        >
+        <Text style={[FONTS.body, { marginTop: 5, textAlign: "justify" }]}>
           {item.body}
         </Text>
-        <Text style={[FONTS.body, { color: COLORS.gray, marginTop: 10 }]}>
+        <Text style={[FONTS.body, { marginTop: 10, textAlign: "justify" }]}>
           {item.description}
         </Text>
       </View>
@@ -79,16 +75,14 @@ const styles = StyleSheet.create({
   imageContent: { width: "100%", height: 200 },
   titleContent: {
     width: "100%",
-    height: 100,
-    marginHorizontal: 30,
+    marginHorizontal: 20,
     marginTop: 30,
     padding: 10,
     flex: 1,
     flexDirection: "column",
   },
   descriptionContent: {
-    marginHorizontal: 30,
-    marginBottom: 20,
+    marginHorizontal: 20,
   },
 });
 

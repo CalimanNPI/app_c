@@ -5,7 +5,6 @@ import {
   View,
   ScrollView,
   RefreshControl,
-  Button,
 } from "react-native";
 
 import Layout from "../components/Layout";

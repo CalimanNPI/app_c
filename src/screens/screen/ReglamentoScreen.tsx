@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import { openURL } from "expo-linking";
 import Layout from "../../components/Layout";
-import COLORS from "../../components/util/Colors";
 import FONTS from "../../components/util/Fonts";
 
 import { reglamentos } from "../../components/util/data";
@@ -21,36 +20,27 @@ const ReglamentoScreen = () => {
 
   return (
     <Layout>
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
+      <View style={{ flex: 1 }}>
         <FlatList
-          showsVerticalScrollIndicator={false}
           data={reglamentos}
-          horizontal={false}
-          numColumns={2}
           keyExtractor={(item: any) => {
             return item.id;
           }}
-          renderItem={({ item }) => {
+          renderItem={({ item }: any) => {
             return (
-              <TouchableOpacity
-                style={styles.card}
-                onPress={() => _handleOpen(item.pdf)}
-              >
-                <View>
-                  <Image
-                    style={styles.cardImage}
-                    source={{ uri: item.image }}
-                  />
-                </View>
-                <View style={styles.cardContent}>
-                  <Text
-                    style={[
-                      FONTS.subTitle,
-                      { color: COLORS.gray, textAlign: "auto" },
-                    ]}
-                  >
-                    {item.title}
-                  </Text>
+              <TouchableOpacity onPress={() => _handleOpen(item.pdf)}>
+                <View style={styles.row}>
+                  <Image source={{ uri: item.image }} style={styles.pic} />
+                  <View>
+                    <View style={styles.nameContainer}>
+                      <Text
+                        style={[FONTS.body, { textAlign: "left" }]}
+                        numberOfLines={3}
+                      >
+                        {item.title}
+                      </Text>
+                    </View>
+                  </View>
                 </View>
               </TouchableOpacity>
             );
@@ -62,30 +52,27 @@ const ReglamentoScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  card: {
-    marginVertical: 5,
-    backgroundColor: COLORS.white,
-    flexBasis: "45%",
-    marginHorizontal: 5,
-    shadowColor: COLORS.gray,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-
-    elevation: 5,
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderColor: "#DCDCDC",
+    backgroundColor: "#fff",
+    borderBottomWidth: 1,
+    padding: 10,
+    paddingRight: 15,
   },
-  cardContent: {
-    padding: 17,
-    justifyContent: "space-between",
+  pic: {
+    borderRadius: 30,
+    width: 60,
+    height: 60,
   },
-  cardImage: {
-    flex: 1,
-    height: 150,
-    width: null,
-    resizeMode: "cover",
+  nameContainer: {
+    width: 300,
+    marginLeft: 15,
+  },
+  msgContainer: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 });
 

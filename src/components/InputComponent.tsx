@@ -30,10 +30,8 @@ const InputComponent = ({
 const styles = StyleSheet.create({
   inputContainer: {
     backgroundColor: COLORS.white,
-    borderRadius: 30,
-    borderColor: COLORS.primaryR,
-    borderWidth: 1,
-    width: 300,
+    borderRadius: 10,
+    width: 350,
     height: 45,
     marginBottom: 20,
     flexDirection: "row",
@@ -51,7 +49,6 @@ const styles = StyleSheet.create({
   inputs: {
     height: 45,
     marginLeft: 16,
-    borderBottomColor: COLORS.white,
     flex: 1,
     fontFamily: "SpaceMono_700Bold",
     color: COLORS.gray,

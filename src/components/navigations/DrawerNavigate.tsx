@@ -1,5 +1,9 @@
 import { Image } from "react-native";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItem,
+} from "@react-navigation/drawer";
 import { AntDesign, Feather } from "@expo/vector-icons";
 
 /** Navegation  menu */
@@ -20,12 +24,14 @@ import LocationScreen from "../../screens/screen/LocationScreen";
 import MessageScreen from "../../screens/screen/MessageScreen";
 
 import COLORS from "../util/Colors";
+import DrawerContent  from "./DrawerContent";
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigate = () => {
   return (
     <Drawer.Navigator
+      drawerContent={(props) => <DrawerContent {...props} />}
       screenOptions={{
         headerTitle: "CENTRO DEPORTIVO COYOACÁN A.C.",
         headerTitleStyle: {
@@ -68,67 +74,12 @@ const DrawerNavigate = () => {
       />
 
       <Drawer.Screen
-        name="History"
-        component={AboutScreen}
+        name="Sport"
+        component={ActividadNavigate}
         options={{
-          title: "Historia",
+          title: "Actividades Deportivas",
           drawerIcon: () => (
-            <Feather name="message-circle" size={24} color={COLORS.primaryR} />
-          ),
-        }}
-      />
-
-      <Drawer.Screen
-        name="Dues"
-        component={CuotasScreen}
-        options={{
-          title: "Cuotas",
-          drawerIcon: () => (
-            <Feather name="dollar-sign" size={24} color={COLORS.primaryR} />
-          ),
-        }}
-      />
-
-      <Drawer.Screen
-        name="Schedules"
-        component={HorariosScreen}
-        options={{
-          title: "Horarios",
-          drawerIcon: () => (
-            <AntDesign name="calendar" size={25} color={COLORS.primaryR} />
-          ),
-        }}
-      />
-
-      <Drawer.Screen
-        name="Installations"
-        component={InstalacionNavigate}
-        options={{
-          title: "Instalaciones",
-          drawerIcon: () => (
-            <Feather name="image" size={25} color={COLORS.primaryR} />
-          ),
-        }}
-      />
-
-      <Drawer.Screen
-        name="Regulations"
-        component={ReglamentoScreen}
-        options={{
-          title: "Reglamento",
-          drawerIcon: () => (
-            <AntDesign name="book" size={25} color={COLORS.primaryR} />
-          ),
-        }}
-      />
-
-      <Drawer.Screen
-        name="Formalities"
-        component={TramitesScreen}
-        options={{
-          title: "Tramites",
-          drawerIcon: () => (
-            <Feather name="book-open" size={24} color={COLORS.primaryR} />
+            <AntDesign name="hearto" size={24} color={COLORS.primaryR} />
           ),
         }}
       />
@@ -145,12 +96,45 @@ const DrawerNavigate = () => {
       />
 
       <Drawer.Screen
-        name="Sport"
-        component={ActividadNavigate}
+        name="Dues"
+        component={CuotasScreen}
         options={{
-          title: "Actividades Deportivas",
+          title: "Cuotas",
           drawerIcon: () => (
-            <AntDesign name="hearto" size={24} color={COLORS.primaryR} />
+            <Feather name="dollar-sign" size={24} color={COLORS.primaryR} />
+          ),
+        }}
+      />
+
+      <Drawer.Screen
+        name="Installations"
+        component={InstalacionNavigate}
+        options={{
+          title: "Instalaciones",
+          drawerIcon: () => (
+            <Feather name="image" size={25} color={COLORS.primaryR} />
+          ),
+        }}
+      />
+
+      <Drawer.Screen
+        name="Schedules"
+        component={HorariosScreen}
+        options={{
+          title: "Horarios",
+          drawerIcon: () => (
+            <AntDesign name="calendar" size={25} color={COLORS.primaryR} />
+          ),
+        }}
+      />
+
+      <Drawer.Screen
+        name="Formalities"
+        component={TramitesScreen}
+        options={{
+          title: "Tramites",
+          drawerIcon: () => (
+            <Feather name="book-open" size={24} color={COLORS.primaryR} />
           ),
         }}
       />
@@ -173,6 +157,28 @@ const DrawerNavigate = () => {
           title: "Mensaje",
           drawerIcon: () => (
             <AntDesign name="mail" size={25} color={COLORS.primaryR} />
+          ),
+        }}
+      />
+
+      <Drawer.Screen
+        name="History"
+        component={AboutScreen}
+        options={{
+          title: "Historia",
+          drawerIcon: () => (
+            <Feather name="message-circle" size={24} color={COLORS.primaryR} />
+          ),
+        }}
+      />
+
+      <Drawer.Screen
+        name="Regulations"
+        component={ReglamentoScreen}
+        options={{
+          title: "Reglamento",
+          drawerIcon: () => (
+            <AntDesign name="book" size={25} color={COLORS.primaryR} />
           ),
         }}
       />

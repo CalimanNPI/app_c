@@ -11,6 +11,7 @@ import {
 
 import { AntDesign } from "@expo/vector-icons";
 import COLORS from "./util/Colors";
+import { osInternalBuildId } from "expo-device";
 const { width, height } = Dimensions.get("window");
 
 const ModalCarousel = ({ images, modalVisible, setModalVisible }: any) => {
@@ -34,7 +35,7 @@ const ModalCarousel = ({ images, modalVisible, setModalVisible }: any) => {
             onPress={() => setModalVisible(false)}
             style={styles.buttomCloaseModal}
           >
-            <AntDesign name="close" size={40} color={COLORS.white} />
+            <AntDesign name="close" size={30} color={COLORS.white} />
           </TouchableOpacity>
           <View style={styles.screen}>
             <Animated.FlatList
@@ -91,7 +92,7 @@ const ModalCarousel = ({ images, modalVisible, setModalVisible }: any) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.8)"
+    backgroundColor: "rgba(0, 0, 0, 0.9)"
   },
   item: {
     position: "relative",
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 15,
     top: 10,
-    zIndex: 2,
+    zIndex: 1,
   },
 });
 

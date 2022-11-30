@@ -31,9 +31,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     backgroundColor: COLORS.white,
     borderRadius: 30,
-    borderColor: COLORS.primaryR,
-    borderWidth: 1,
-    width: 300,
+    width: 350,
     height: 150,
     marginBottom: 20,
     flexDirection: "row",

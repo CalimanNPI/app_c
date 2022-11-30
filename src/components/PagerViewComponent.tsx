@@ -7,8 +7,10 @@ import {
 } from "react-native";
 import PagerView from "react-native-pager-view";
 import { Feather as Icon } from "@expo/vector-icons";
+import FONTS from "./util/Fonts";
+import COLORS from "./util/Colors";
 
-const Onboarding1 = () => {
+const PagerViewComponent = () => {
   const pagerRef = useRef(null);
   const handlePageChange = (pageNumbre: any) => {
     pagerRef.current.setPage(pageNumbre);
@@ -42,7 +44,7 @@ const Onboarding1 = () => {
   );
 };
 
-const Page = ({ backgroundColor, icon, title }: any) => {
+const Page = ({ backgroundColor, icon, title, desc }: any) => {
   return (
     <View
       style={{
@@ -52,11 +54,12 @@ const Page = ({ backgroundColor, icon, title }: any) => {
         backgroundColor,
       }}
     >
-      <Icon name={icon} size={172} color="white" />
+      <Icon name={icon} size={70} color="white" />
       <View style={{ marginTop: 16 }}>
-        <Text style={{ fontSize: 24, fontWeight: "bold", color: "white" }}>
-          {title}
-        </Text>
+        <Text style={[FONTS.title, { color: COLORS.white }]}>{title}</Text>
+      </View>
+      <View style={{ marginTop: 16, marginHorizontal: 20 }}>
+        <Text style={[FONTS.body, { color: COLORS.white, textAlign:"justify" }]}>{desc}</Text>
       </View>
     </View>
   );
@@ -91,9 +94,7 @@ const Footer = ({
       style={{
         flexDirection: "row",
         justifyContent: "center",
-        height: HEIGHT,
-        width:windowWidth,
-
+        height: 60,
         backgroundColor,
         opacity: 0.6,
         alignItems: "center",
@@ -104,11 +105,10 @@ const Footer = ({
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
-          height: HEIGHT,
-          width:windowWidth,
-
+          height: 60,
+          width: windowWidth,
           backgroundColor,
-          opacity: 0.6,
+          opacity: 0.8,
           alignItems: "center",
           paddingHorizontal: FOOTER_PADDING,
         }}
@@ -122,4 +122,4 @@ const Footer = ({
   );
 };
 
-export default Onboarding;
+export { Footer, Page };

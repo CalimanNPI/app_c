@@ -26,7 +26,7 @@ const PasesVisita = () => {
             </Text>
           </View>
           <View style={styles.descriptionContent}>
-            <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 5 }]}>
+            <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 5, textAlign:"justify" }]}>
               El usuario y el deportista de los equipos representativos podrán
               traer invitados al Centro Deportivo para hacer uso de las
               instalaciones entre semana, fines de semana y días festivos,
@@ -34,21 +34,21 @@ const PasesVisita = () => {
             </Text>
 
             <View style={{ marginLeft: 30, marginTop: 30 }}>
-              <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 5 }]}>
+              <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 5 , textAlign:"justify" }]}>
                 1.- Solicitar los pases de visita en la Caja General dejando una
                 identificación oficial. Cabe señalar que el usuario quedará como
                 responsable de sus invitados durante su estancia en el Centro
                 Deportivo.
               </Text>
-              <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 5 }]}>
+              <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 5, textAlign:"justify"  }]}>
                 2.- Pagar la cuota vigente por concepto de pase de visita con
                 uso de instalaciones consulte nuestra sección de Cuotas.
               </Text>
-              <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 5 }]}>
+              <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 5, textAlign:"justify"  }]}>
                 3.- El invitado deberá someterse a una revisión médica, la cual
                 tendrá una vigencia de 6 meses.
               </Text>
-              <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 5 }]}>
+              <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 5, textAlign:"justify"  }]}>
                 4.- El pase de visita sólo tendrá vigencia por un día. Al
                 finalizar el servicio deberá pasar a la Caja General a recoger
                 la identificación oficial que dejó.
@@ -67,18 +67,18 @@ const PasesVisita = () => {
             </Text>
           </View>
           <View style={styles.descriptionContent}>
-            <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 5 }]}>
+            <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 5, textAlign:"justify"  }]}>
               El usuario y el deportista de los equipos representativos podrán
               traer invitados al Centro Deportivo para hacer uso exclusivo de la
               Cafetería, deberán realizar el siguiente procedimiento:
             </Text>
 
             <View style={{ marginLeft: 30, marginTop: 30 }}>
-              <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 5 }]}>
+              <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 5, textAlign:"justify"  }]}>
                 1.- Solicitar los brazaletes necesarios en el mostrador de
                 Servicio a Usuarios presentando su credencial de usuario.
               </Text>
-              <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 5 }]}>
+              <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 5 , textAlign:"justify" }]}>
                 2.- La duración máxima es de 2 horas, pasado este tiempo pagarán
                 pase de visita con uso de instalaciones.
               </Text>

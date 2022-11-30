@@ -1,6 +1,8 @@
 import * as React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
+import COLORS from "./util/Colors";
 import Colors from "./util/Colors";
+import FONTS from "./util/Fonts";
 
 const SIZES = ["small", "medium", "large"];
 const TYPES = [
@@ -56,7 +58,7 @@ export default function ButtomComponent({
 
   return (
     <TouchableOpacity style={btnStyle} onPress={onPress}>
-      <Text style={{ color: "#fff", fontSize: 16, fontWeight: "bold" }}>
+      <Text style={[FONTS.subTitle, {color: COLORS.white}]}>
         {label}
       </Text>
     </TouchableOpacity>

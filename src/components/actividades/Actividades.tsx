@@ -77,10 +77,6 @@ const Actividades = () => {
             onChangeText={(text: string) => handleChange("search", text)}
           />
         </View>
-
-        <TouchableHighlight style={styles.saveButton} onPress={() => search()}>
-          <AntDesign name="search1" size={24} color={COLORS.white} />
-        </TouchableHighlight>
       </View>
 
       <View style={styles.container}>
@@ -88,8 +84,8 @@ const Actividades = () => {
           <FlatList
             style={styles.contentList}
             data={searchData}
-            keyExtractor={(item: any) => {
-              return item.id;
+            keyExtractor={(_: any, index: any) => {
+              return index;
             }}
             renderItem={({ item }: any) => {
               return (
@@ -156,8 +152,8 @@ const Actividades = () => {
           <FlatList
             style={styles.contentList}
             data={actividades}
-            keyExtractor={(item: any) => {
-              return item.id;
+            keyExtractor={(_: any, index: any) => {
+              return index;
             }}
             renderItem={({ item }: any) => {
               return (

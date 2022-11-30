@@ -46,14 +46,14 @@ const MailScreen = () => {
             onChangeText={(text: string) => handleChange("name", text)}
           />
           <InputComponent
-            placeholder="Nombre"
+            placeholder="Correo electrónico"
             keyboardType={"default"}
             icon="user"
             value={email.email}
             onChangeText={(text: string) => handleChange("email", text)}
           />
           <InputComponent
-            placeholder="Nombre"
+            placeholder="Clave de usuario"
             keyboardType={"default"}
             icon="key"
             value={email.userKey}
@@ -61,7 +61,7 @@ const MailScreen = () => {
           />
 
           <InputAreaComponent
-            placeholder="Nombre"
+            placeholder="Mensaje"
             keyboardType={"default"}
             icon="message1"
             value={email.message}

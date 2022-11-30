@@ -19,6 +19,11 @@ const renderItem = ({ item }: any) => {
     openURL(pdf);
   };
 
+  const _handleOpenImg = (pdf: string) => {
+    //openURL(pdf);
+    console.log(pdf);
+  };
+
   return (
     <TouchableOpacity onPress={() => _handleOpen(item.pdf)}>
       <View style={styles.card}>

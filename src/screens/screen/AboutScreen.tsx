@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Text, View, StyleSheet, ScrollView, Image } from "react-native";
+import PagerView from "react-native-pager-view";
+
 import { AntDesign } from "@expo/vector-icons";
 import COLORS from "../../components/util/Colors";
 import FONTS from "../../components/util/Fonts";
@@ -9,7 +11,15 @@ import { P_DATA } from "@env";
 
 import { valores } from "../../components/util/data";
 
+import { Footer, Page } from "../../components/PagerViewComponent";
+
 const AboutScreen = () => {
+  const pagerRef = useRef(null);
+  const handlePageChange = (pageNumbre: any) => {
+    //console.log(pageNumbre);
+    pagerRef.current.setPage(pageNumbre);
+  };
+
   return (
     <ScrollView>
       <Layout>
@@ -23,11 +33,13 @@ const AboutScreen = () => {
           <Text style={[FONTS.title, { color: COLORS.gray }]}>
             Nuestra historia
           </Text>
-          <Text style={[FONTS.subTitle, { color: COLORS.gray }]}>
+          <Text style={[FONTS.subTitle, { color: COLORS.primaryR }]}>
             Centro Deportivo Coyoacán A.C.
           </Text>
           <View style={styles.descriptionContent}>
-            <Text style={[FONTS.body, { color: COLORS.gray }]}>
+            <Text
+              style={[FONTS.body, { color: COLORS.gray, textAlign: "justify" }]}
+            >
               Centro Deportivo Coyoacán, A.C. es una asociación civil, no
               lucrativa, constituida en 1977 por varias instituciones con el
               objetivo de brindar a sus empleados y a sus familiares un espacio
@@ -36,38 +48,62 @@ const AboutScreen = () => {
           </View>
         </View>
 
-        {valores.map((item) => {
-          return (
-            <View style={styles.containerItem} key={item["id"]}>
-              <AntDesign name="infocirlceo" style={styles.image} />
-              <View style={styles.content}>
-                <View style={styles.contentHeader}>
-                  <Text style={[FONTS.subTitle, { color: COLORS.white }]}>
-                    {item["title"]}
-                  </Text>
-                </View>
-                <Text style={[FONTS.body, { color: COLORS.white }]}>
-                  {item["desc"]}
-                </Text>
+        <PagerView
+          style={{ flex: 1, height: 400 }}
+          initialPage={0}
+          ref={pagerRef}
+        >
+          {valores.map((item, index) => {
+            return (
+              <View key={item["id"]}>
+                {item["id"] == 1 ? (
+                  <View style={{ flex: 1 }}>
+                    <Page
+                      backgroundColor={COLORS.grayT0_3}
+                      icon={item.icon}
+                      title={item.title}
+                      desc={item.desc}
+                    />
+                    <Footer
+                      backgroundColor={COLORS.primaryB}
+                      rightButtonLabel="Próxima"
+                      rightButtonPress={() => handlePageChange(item["id"])}
+                    />
+                  </View>
+                ) : (
+                  <View style={{ flex: 1 }}>
+                    <Page
+                      backgroundColor={COLORS.grayT0_3}
+                      icon={item.icon}
+                      title={item.title}
+                      desc={item.desc}
+                    />
+                    <Footer
+                      backgroundColor={COLORS.primaryB}
+                      rightButtonLabel="Próxima"
+                      rightButtonPress={() => handlePageChange(item["id"])}
+                      leftButtonLabel="Atrás"
+                      leftButtonPress={() => {
+                        handlePageChange(item["id"]-2);
+                      }}
+                    />
+                  </View>
+                )}
               </View>
-            </View>
-          );
-        })}
+            );
+          })}
+        </PagerView>
       </Layout>
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  separator: {
-    padding: 5,
-    backgroundColor: COLORS.primaryRLight,
-    width: "100%",
-  },
   container: {
     flex: 1,
     alignItems: "center",
     backgroundColor: COLORS.white,
+    marginBottom: 10,
   },
   logo: {
     width: 200,
@@ -80,30 +116,27 @@ const styles = StyleSheet.create({
     padding: 30,
   },
   containerItem: {
-    paddingLeft: 15,
-    paddingRight: 15,
+    flexDirection: "column",
+    backgroundColor: COLORS.white,
+    paddingHorizontal: 20,
     paddingVertical: 20,
-    flexDirection: "row",
-    alignItems: "flex-start",
-    backgroundColor: COLORS.primaryRLight,
-    marginTop: 5,
   },
   content: {
     marginLeft: 16,
     flex: 1,
   },
-  contentHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 6,
-  },
+
   image: {
     width: 45,
     height: 45,
-    borderRadius: 20,
-    marginLeft: 20,
     fontSize: 40,
-    color: COLORS.white,
+    color: COLORS.primaryR,
+    position: "relative",
+    right: 10,
+  },
+  pager: {
+    width: "100%",
+    height: 230,
   },
 });
 

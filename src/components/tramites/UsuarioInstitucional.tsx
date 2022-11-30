@@ -19,13 +19,13 @@ const UsuarioInstitucional = () => {
             <Text style={[FONTS.subTitle, { color: COLORS.gray }]}>
               Usuario Institucional
             </Text>
-            <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 5 }]}>
+            <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 5, textAlign:"justify"  }]}>
               Podrá hacer uso de las instalaciones el mismo día en el que
               realizó el trámite.
             </Text>
           </View>
           <View style={styles.descriptionContent}>
-            <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 5 }]}>
+            <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 5, textAlign:"justify" }]}>
               Para el Centro Deportivo un USUARIO INSTITUCIONAL es el empleado
               de una institución inscrito a petición de ésta en el Centro
               Deportivo. El empleado deberá presentar su solicitud directamente
@@ -50,7 +50,7 @@ const UsuarioInstitucional = () => {
               </Text>
             </View>
 
-            <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 20 }]}>
+            <Text style={[FONTS.desc, { color: COLORS.gray, marginTop: 20, textAlign:"justify" }]}>
               Podrá hacer uso de las instalaciones el mismo día en el que
               realizó el trámite. Consulte los horarios de servicio de este
               Centro Deportivo en nuestra sección de Horarios.
