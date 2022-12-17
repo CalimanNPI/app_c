@@ -24,6 +24,7 @@ export default function ButtomComponent({
   size,
   label,
   rounded,
+  disabled
 }: any) {
   const btnSize = SIZES.includes(size) ? size : "small";
   const btnType = TYPES.includes(type) ? type : "primary";
@@ -57,7 +58,7 @@ export default function ButtomComponent({
   };
 
   return (
-    <TouchableOpacity style={btnStyle} onPress={onPress}>
+    <TouchableOpacity style={btnStyle} onPress={onPress} disabled={disabled}>
       <Text style={[FONTS.subTitle, {color: COLORS.white}]}>
         {label}
       </Text>

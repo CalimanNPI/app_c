@@ -1,27 +1,46 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Image, ImageBackground } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ImageBackground,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 
-import { getUsuarioInfo, getClave, getMail, getImg } from "../../api/auth";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+
+import {
+  getUsuarioInfo,
+  getClave,
+  getMail,
+  getImg,
+  getNombre,
+} from "../../api/auth";
 import Layout from "../../components/Layout";
 import COLORS from "../../components/util/Colors";
 import FONTS from "../../components/util/Fonts";
 import { P_DATA } from "@env";
+import PerfilEditScreen from "./PerfilEditScreen";
+
+import BottomSheetModalPe from "../../components/BottomSheetModalPe";
+import { color } from "react-native-reanimated";
 
 const PerfilScreen = () => {
   const [cuenta, setCuenta] = useState<string>("");
   const [usuario, setusuario] = useState([]);
   const [mail, setMail] = useState<string>("");
   const [foto, setFoto] = useState<string>("");
+  const [nombre, setNombre] = useState<string>("");
 
   const userInfo = async () => {
     const data = await getUsuarioInfo();
     setusuario(data.usuario);
     setCuenta(await getClave());
     setMail(await getMail());
-    setMail(await getMail());
-
+    setNombre(await getNombre());
     setFoto(await getImg());
-    console.log(data);
   };
 
   useEffect(() => {
@@ -29,52 +48,51 @@ const PerfilScreen = () => {
   }, []);
 
   return (
-    <Layout>
-      <ImageBackground
-        source={{ uri: P_DATA + "img/fondo.jpg" }}
-        resizeMode={"cover"}
-      >
-        {usuario.map((value, index) => {
-          return (
-            <View style={styles.headerContent} key={index}>
-              <Image
-                style={styles.avatar}
-                source={{
-                  uri:
-                    foto != ""
-                      ? foto
-                      : "https://bootdey.com/img/Content/avatar/avatar6.png",
-                }}
+    <BottomSheetModalProvider>
+      <ScrollView>
+        <Layout>
+          <ImageBackground
+            source={{ uri: P_DATA + "img/fondo.jpg" }}
+            resizeMode={"cover"}
+          >
+            {usuario.map((value, index) => {
+              return (
+                <View style={styles.headerContent} key={index}>
+                  <Image
+                    style={styles.avatar}
+                    source={{
+                      uri:
+                        foto != ""
+                          ? foto
+                          : "https://bootdey.com/img/Content/avatar/avatar6.png",
+                    }}
+                  />
+
+                  <Text style={[FONTS.subTitle, { color: COLORS.white }]}>
+                    {nombre}
+                  </Text>
+                  <Text style={[FONTS.body, { color: COLORS.white }]}>
+                    {mail}
+                  </Text>
+                  <Text style={[FONTS.body, { color: COLORS.white }]}>
+                    {cuenta}
+                  </Text>
+                </View>
+              );
+            })}
+          </ImageBackground>
+
+          <View style={styles.card}>
+            <View style={styles.cardContent}>
+              <BottomSheetModalPe
+                title={"Perfil"}
+                children={PerfilEditScreen}
               />
-
-              <Text style={[FONTS.subTitle, { color: COLORS.white }]}>
-                {value["nombre"].trim()}
-              </Text>
-              <Text style={[FONTS.body, { color: COLORS.white }]}>{mail}</Text>
-              <Text style={[FONTS.body, { color: COLORS.white }]}>
-                {cuenta}
-              </Text>
             </View>
-          );
-        })}
-      </ImageBackground>
-
-      <View style={styles.body}>
-        <View style={styles.item}>
-          <View style={styles.iconContent}>
-            <Image
-              style={styles.icon}
-              source={{
-                uri: "https://img.icons8.com/color/70/000000/cottage.png",
-              }}
-            />
           </View>
-          <View style={styles.infoContent}>
-            <Text style={styles.info}>Home</Text>
-          </View>
-        </View>
-      </View>
-    </Layout>
+        </Layout>
+      </ScrollView>
+    </BottomSheetModalProvider>
   );
 };
 
@@ -97,33 +115,24 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 
-  body: {
+  /******** card **************/
+  card: {
+    shadowColor: COLORS.gray,
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.37,
+    shadowRadius: 7.49,
+    elevation: 12,
+
+    marginVertical: 5,
     backgroundColor: COLORS.white,
-    height: 500,
-    alignItems: "center",
+    marginHorizontal: 5,
   },
-  item: {
-    flexDirection: "row",
-  },
-  infoContent: {
-    flex: 1,
-    alignItems: "flex-start",
-    paddingLeft: 5,
-  },
-  iconContent: {
-    flex: 1,
-    alignItems: "flex-end",
-    paddingRight: 5,
-  },
-  icon: {
-    width: 30,
-    height: 30,
-    marginTop: 20,
-  },
-  info: {
-    fontSize: 18,
-    marginTop: 20,
-    color: COLORS.gray,
+  cardContent: {
+    paddingVertical: 12.5,
+    paddingHorizontal: 16,
   },
 });
 export default PerfilScreen;

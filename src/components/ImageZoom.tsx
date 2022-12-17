@@ -9,8 +9,6 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-import { AntDesign } from "@expo/vector-icons";
-import COLORS from "./util/Colors";
 
 const AnimatedImage = Animated.createAnimatedComponent(Image);
 const { width, height } = Dimensions.get("window");
@@ -67,13 +65,9 @@ const ImageZoom = ({ image }: any) => {
               height: 25,
               backgroundColor: "rgba(229,229,234, 0.5)",
               borderRadius: 10,
-              justifyContent: "center",
-              alignItems: "center",
             },
           ]}
-        >
-          <AntDesign name="arrowsalt" size={20} color={COLORS.gray} />
-        </Animated.View>
+        />
       </Animated.View>
     </PinchGestureHandler>
   );

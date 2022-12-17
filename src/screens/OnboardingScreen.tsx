@@ -10,10 +10,11 @@ import {
   TouchableOpacity,
   Dimensions,
 } from "react-native";
+import COLORS from "../components/util/Colors";
 
 const { width, height } = Dimensions.get("window");
 
-const COLORS = { primary: "#FF3B30", white: "#F2F2F7" };
+//const COLORS = { primary: COLORSS.white, white: COLORSS.primaryR };
 
 const slides = [
   {
@@ -100,7 +101,7 @@ const OnboardingScreen = ({ navigation }) => {
               style={[
                 styles.indicator,
                 currentSlideIndex == index && {
-                  backgroundColor: COLORS.white,
+                  backgroundColor: COLORS.primaryR,
                   width: 25,
                 },
               ]}
@@ -116,7 +117,14 @@ const OnboardingScreen = ({ navigation }) => {
                 style={styles.btn}
                 onPress={() => navigation.replace("DrawerNavigate")}
               >
-                <Text style={{ fontWeight: "bold", fontSize: 15 }}>
+                <Text
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: 15,
+                    fontFamily: "SpaceMono_700Bold",
+                    color: COLORS.white,
+                  }}
+                >
                   GET STARTED
                 </Text>
               </TouchableOpacity>
@@ -128,7 +136,7 @@ const OnboardingScreen = ({ navigation }) => {
                 style={[
                   styles.btn,
                   {
-                    borderColor: COLORS.white,
+                    borderColor: COLORS.primaryR,
                     borderWidth: 1,
                     backgroundColor: "transparent",
                   },
@@ -139,7 +147,8 @@ const OnboardingScreen = ({ navigation }) => {
                   style={{
                     fontWeight: "bold",
                     fontSize: 15,
-                    color: COLORS.white,
+                    color: COLORS.primaryR,
+                    fontFamily: "SpaceMono_700Bold",
                   }}
                 >
                   SKIP
@@ -149,13 +158,19 @@ const OnboardingScreen = ({ navigation }) => {
               <TouchableOpacity
                 activeOpacity={0.8}
                 onPress={goToNextSlide}
-                style={styles.btn}
+                style={[
+                  styles.btn,
+                  {
+                    backgroundColor: COLORS.primaryR,
+                  },
+                ]}
               >
                 <Text
                   style={{
                     fontWeight: "bold",
                     fontSize: 15,
-                    color: COLORS.primary
+                    color: COLORS.white,
+                    fontFamily: "SpaceMono_700Bold",
                   }}
                 >
                   NEXT
@@ -169,8 +184,8 @@ const OnboardingScreen = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.primary }}>
-      <StatusBar backgroundColor={COLORS.primary} />
+    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
+      <StatusBar backgroundColor={COLORS.primaryR} />
       <FlatList
         ref={ref}
         onMomentumScrollEnd={updateCurrentSlideIndex}
@@ -188,19 +203,20 @@ const OnboardingScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   subtitle: {
-    color: COLORS.white,
-    fontSize: 13,
+    color: COLORS.primaryR,
+    fontSize: 12,
     marginTop: 10,
     maxWidth: "70%",
     textAlign: "center",
     lineHeight: 23,
   },
   title: {
-    color: COLORS.white,
+    color: COLORS.primaryR,
     fontSize: 22,
     fontWeight: "bold",
     marginTop: 20,
     textAlign: "center",
+    fontFamily: "SpaceMono_700Bold",
   },
   image: {
     height: "100%",
@@ -210,7 +226,7 @@ const styles = StyleSheet.create({
   indicator: {
     height: 2.5,
     width: 10,
-    backgroundColor: "#F2F2F7",
+    backgroundColor: COLORS.grayT0_3,
     marginHorizontal: 3,
     borderRadius: 2,
   },
@@ -218,10 +234,11 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 50,
     borderRadius: 5,
-    backgroundColor: "#F2F2F7",
+    backgroundColor: COLORS.primaryR,
     justifyContent: "center",
     alignItems: "center",
-    borderColor: "#F2F2F7",
+    borderColor: COLORS.primaryR,
   },
 });
+
 export default OnboardingScreen;

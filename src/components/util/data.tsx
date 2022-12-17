@@ -1,4 +1,5 @@
 import { P_DATA } from "@env";
+import COLORS from "./Colors";
 
 export const reglamentos = [
   {
@@ -101,32 +102,16 @@ export const instalaciones = [
     title: "GIMNASIO DE PESAS",
     time: "2018-08-01 12:15 pm",
     image: [
-      {
-        id: 1,
-        image: P_DATA + "instalaciones/gym/1.jpg",
-      },
-      {
-        id: 2,
-        image: P_DATA + "instalaciones/gym/2.jpg",
-      },
-      {
-        id: 3,
-        image: P_DATA + "instalaciones/gym/3.jpg",
-      },
-      {
-        id: 4,
-        image: P_DATA + "instalaciones/gym/4.jpg",
-      },
-      {
-        id: 5,
-        image: P_DATA + "instalaciones/gym/5.jpg",
-      },
-      {
-        id: 6,
-        image: P_DATA + "instalaciones/gym/6.jpg",
-      },
+      P_DATA + "instalaciones/gym/1.jpg",
+      P_DATA + "instalaciones/gym/2.jpg",
+      P_DATA + "instalaciones/gym/3.jpg",
+      P_DATA + "instalaciones/gym/4.jpg",
+      P_DATA + "instalaciones/gym/5.jpg",
+      P_DATA + "instalaciones/gym/6.jpg",
     ],
     description:
+      "El Gimnasio de Pesas del C.D.C. tiene una superficie de 254 metros, cuenta con todos los aparatos necesarios para desarrollar la capacidad cardiovascular, así como desarrollar el tono muscular, mejorar la circulación y empezar a sustituir grasa por músculo.",
+    comment:
       "El gimnasio de Pesas cuenta con todos los equipos y aparatos necesarios para fortalecer y moldear tu figura.",
   },
 
@@ -135,41 +120,19 @@ export const instalaciones = [
     title: "CANCHAS DE TENIS",
     time: "2018-08-01 12:15 pm",
     image: [
-      {
-        id: 1,
-        image: P_DATA + "instalaciones/tenis/1.jpg",
-      },
-      {
-        id: 2,
-        image: P_DATA + "instalaciones/tenis/2.jpg",
-      },
-      {
-        id: 3,
-        image: P_DATA + "instalaciones/tenis/3.jpg",
-      },
-      {
-        id: 4,
-        image: P_DATA + "instalaciones/tenis/4.jpg",
-      },
-      {
-        id: 5,
-        image: P_DATA + "instalaciones/tenis/5.jpg",
-      },
-      {
-        id: 6,
-        image: P_DATA + "instalaciones/tenis/6.jpg",
-      },
-      {
-        id: 7,
-        image: P_DATA + "instalaciones/tenis/7.jpg",
-      },
-      {
-        id: 8,
-        image: P_DATA + "instalaciones/tenis/8.jpg",
-      },
+      P_DATA + "instalaciones/tenis/1.jpg",
+      P_DATA + "instalaciones/tenis/2.jpg",
+      P_DATA + "instalaciones/tenis/3.jpg",
+      P_DATA + "instalaciones/tenis/4.jpg",
+      P_DATA + "instalaciones/tenis/5.jpg",
+      P_DATA + "instalaciones/tenis/6.jpg",
+      P_DATA + "instalaciones/tenis/7.jpg",
+      P_DATA + "instalaciones/tenis/8.jpg",
     ],
+    comment:
+      "El Centro Deportivo cuenta con 6 canchas con superficie de arcilla para la práctica del tenis; 3 de ellas se encuentran techadas y 3 al aire libre.",
     description:
-      "Cuenta con 6 canchas con superficie de arcilla para la práctica del tenis; 3 de ellas se encuentran techadas y 3 al aire libre.",
+      "Las Canchas de Tenis del C.D.C tiene una infraestructura formada por 6 canchas en total, 3 canchas con domo y 3 al descubierto, su suelo es de arcilla de primer nivel, se desarrollan en ellas torneos y entrenamientos.	",
   },
 ];
 
@@ -400,34 +363,49 @@ export const menus = [
     desc: "Los sabores que te harán sentir bien. ",
     image: P_DATA + "menus/img/dia.png",
     pdf: P_DATA + "menus/Menu-del-dia.pdf",
+    color: COLORS.primaryR,
+    icon: "https://img.icons8.com/ios/200/ffffff/kawaii-egg.png",
+    link: "MenuDiaScreen",
   },
   {
     id: 2,
-    title: "MENÚ DE DESAYUNOS",
+    title: "DESAYUNOS",
     desc: "Los sabores que te harán sentir bien. ",
     image: P_DATA + "menus/img/desayunos.png",
     pdf: P_DATA + "menus/Menu-De-Desayunos.pdf",
+    color: COLORS.primaryO,
+    icon: "https://img.icons8.com/ios/200/ffffff/kawaii-croissant.png",
+    link: "MenuCCScreen",
   },
   {
     id: 3,
-    title: "MENÚ COMIDAS Y CENAS",
+    title: "COMIDAS Y CENAS",
     desc: "Los sabores que te harán sentir bien. ",
     image: P_DATA + "menus/img/comidas.png",
     pdf: P_DATA + "menus/Menu-De-Comida-y-Cenas.pdf",
+    color: COLORS.primaryG,
+    icon: "https://img.icons8.com/ios/200/ffffff/cute-pumpkin.png",
+    link: "MenuCCScreen",
   },
   {
     id: 4,
-    title: "MENÚ INFANTIL",
+    title: "INFANTIL",
     desc: "Los sabores que te harán sentir bien. ",
     image: P_DATA + "menus/img/infantil.png",
     pdf: P_DATA + "menus/Menu-Infantil.pdf",
+    color: COLORS.primaryB,
+    icon: "https://img.icons8.com/ios/200/ffffff/kawaii-bread-1.png",
+    link: "MenuCCScreen",
   },
   {
     id: 5,
-    title: "MENÚ DE COMIDA RAPIDA",
+    title: "COMIDA RAPIDA",
     desc: "Los sabores que te harán sentir bien. ",
     image: P_DATA + "menus/img/fast.png",
     pdf: P_DATA + "menus/Menu-De-Comida-Rapida.pdf",
+    color: COLORS.primary,
+    icon: "https://img.icons8.com/ios/100/ffffff/kawaii-french-fries.png",
+    link: "MenuCCScreen",
   },
 ];
 

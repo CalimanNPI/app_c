@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Alert,
   Dimensions,
+  Image,
 } from "react-native";
 import { AntDesign, Feather } from "@expo/vector-icons";
 import MapView, { Marker, Polygon } from "react-native-maps";
@@ -14,9 +15,12 @@ import { openURL } from "expo-linking";
 import * as MailComposer from "expo-mail-composer";
 
 import Layout from "../../components/Layout";
-import BackgroundSvg from "../../components/BackgroundSvg";
 import COLORS from "../../components/util/Colors";
 import FONTS from "../../components/util/Fonts";
+import CenterTopSvgComponent from "../../components/svg/ButtomNew";
+import TopSvgComponent from "../../components/svg/TopSVG";
+import TitleComponent from "../../components/TextTitleComponent";
+import CardComponent from "../../components/CardComponent";
 //import MapViewDirections from "react-native-maps-directions";
 //import { GOOGLE_MAPS_KEY } from "@env";
 const { width, height } = Dimensions.get("window");
@@ -106,77 +110,88 @@ const LocationScreen = () => {
 
   return (
     <Layout>
-      <View style={styles.container}>
-        {/* <BackgroundSvg style={styles.containerSVG} />*/}
+      {/* <BackgroundSvg style={styles.containerSVG} />*/}
 
-        <View style={[styles.card, { height: 120 }]}>
+      {/* <View style={[styles.card, { height: 120 }]}>
           <Text style={[FONTS.title, { color: COLORS.gray }]}>Contacto</Text>
           <Text style={[FONTS.body, { color: COLORS.gray }]}>
             Esta clave no tiene restricciones. A fin de evitar el uso no
             autorizado.
           </Text>
-        </View>
-
-        <View style={styles.card}>
-          <View style={styles.containerText}>
-            <AntDesign name="phone" style={styles.icons} />
-            <Text style={[FONTS.body, { color: COLORS.gray }]}>
-              5591830100 ext. 602.
-            </Text>
+  </View>*/}
+      <TitleComponent text={"Contactanos"} />
+      <CardComponent
+        children={
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <View style={{ flexDirection: "column" }}>
+              <View style={styles.containerText}>
+                <AntDesign name="phone" style={styles.icons} />
+                <Text style={[FONTS.body, { color: COLORS.gray }]}>
+                  5591830100 ext. 602.
+                </Text>
+              </View>
+              <TouchableOpacity style={styles.containerText} onPress={showAlet}>
+                <AntDesign name="mail" style={styles.icons} />
+                <Text style={[FONTS.body, { color: COLORS.gray }]}>
+                  contacto@cdcac.com
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.containerText}
+                onPress={_handleOpenMessenger}
+              >
+                <AntDesign name="message1" style={styles.icons} />
+                <Text style={[FONTS.body, { color: COLORS.gray }]}>
+                  Messenger
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Image
+                source={{
+                  uri: "https://bootdey.com/img/Content/avatar/avatar6.png",
+                }}
+                style={{ width: 50, height: 50, borderRadius: 50 }}
+                resizeMode={"cover"}
+              />
+            </View>
           </View>
+        }
+      />
 
-          <TouchableOpacity style={styles.containerText} onPress={showAlet}>
-            <AntDesign name="mail" style={styles.icons} />
-            <Text style={[FONTS.body, { color: COLORS.gray }]}>
-              contacto@cdcac.com
-            </Text>
-          </TouchableOpacity>
-
-          <View style={styles.containerIcons}>
-            <TouchableOpacity onPress={_handleOpenFacebook}>
-              <Feather name="facebook" style={styles.icons} />
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={_handleOpenYoutube}>
-              <Feather name="youtube" style={styles.icons} />
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={_handleOpenInstagram}>
-              <AntDesign name="instagram" style={styles.icons} />
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={_handleOpenMessenger}>
-              <AntDesign name="message1" style={styles.icons} />
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        <View style={styles.cardMap}>
-          <MapView
-            initialRegion={{
-              latitude: 19.361687934069835,
-              longitude: -99.16218744590878,
-              latitudeDelta: 0.004245888672006259,
-              longitudeDelta: 0.004877261817441081,
-            }}
-            style={styles.map}
-            //onRegionChange={Onregion}
-          >
-            {/*<Marker
+      <View style={styles.cardMap}>
+        <MapView
+          initialRegion={{
+            latitude: 19.361687934069835,
+            longitude: -99.16218744590878,
+            latitudeDelta: 0.004245888672006259,
+            longitudeDelta: 0.004877261817441081,
+          }}
+          showsUserLocation={true}
+          style={styles.map}
+          //onRegionChange={Onregion}
+        >
+          {/*<Marker
             coordinate={origin}
             draggable
             onDragEnd={(direction) =>
               setOrigin(direction.nativeEvent.coordinate)
             }
           />*/}
-            <Marker
-              coordinate={destination}
-              draggable
-              onDragEnd={(direction) =>
-                setOrigin(direction.nativeEvent.coordinate)
-              }
-            />
-            {/*<MapViewDirections
+          <Marker
+            coordinate={destination}
+            draggable
+            onDragEnd={(direction) =>
+              setOrigin(direction.nativeEvent.coordinate)
+            }
+          />
+          {/*<MapViewDirections
             origin={origin}
             destination={destination}
             apikey={GOOGLE_MAPS_KEY}
@@ -189,24 +204,30 @@ const LocationScreen = () => {
             strokeColor={"#FF3B30"}
             strokeWidth={8}
           />*/}
-          </MapView>
-        </View>
-        {/* <BackgroundSvg style={styles.containerSVG} />*/}
+        </MapView>
+      </View>
+
+      <View style={styles.contentSize}>
+        <TouchableOpacity onPress={_handleOpenFacebook} style={styles.btnSize}>
+          <Feather name="facebook" size={25} color={COLORS.primaryR} />
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={_handleOpenYoutube} style={styles.btnSize}>
+          <Feather name="youtube" size={25} color={COLORS.primaryR} />
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={_handleOpenInstagram} style={styles.btnSize}>
+          <AntDesign name="instagram" size={25} color={COLORS.primaryR} />
+        </TouchableOpacity>
       </View>
     </Layout>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    justifyContent: "center",
-    alignItems: "center",
-  },
   card: {
     width: "90%",
     height: 160,
-    padding: 20,
-    marginTop: 20,
     borderRadius: 10,
     backgroundColor: COLORS.white,
     shadowColor: COLORS.gray,
@@ -224,12 +245,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: 5,
   },
-  containerIcons: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    width: "100%",
-    marginVertical: 10,
-  },
   icons: {
     color: COLORS.primaryR,
     fontSize: 30,
@@ -237,18 +252,36 @@ const styles = StyleSheet.create({
   },
   cardMap: {
     width,
-    height: 260,
+    height: 300,
     marginTop: 20,
+    borderRadius: 20,
+    alignItems: "center",
   },
   map: {
-    width: "100%",
-    height: "100%",
+    width: "95%",
+    height: "95%",
   },
-  containerSVG: {
-    position: "absolute",
-    width: Dimensions.get("screen").width,
-    justifyContent: "flex-start",
-    alignContent: "center",
+
+  contentSize: {
+    justifyContent: "center",
+    marginHorizontal: 30,
+    flexDirection: "row",
+    marginTop: 20,
+    marginBottom: 10,
+  },
+
+  btnSize: {
+    height: 40,
+    width: 40,
+    borderRadius: 40,
+    borderColor: COLORS.grayT0_3,
+    borderWidth: 1,
+    marginHorizontal: 10,
+    backgroundColor: COLORS.white,
+
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

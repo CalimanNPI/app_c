@@ -1,8 +1,9 @@
 import React from "react";
-import { StyleSheet, TextInput, View } from "react-native";
+import { StyleSheet, TextInput, View, Text } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
 import COLORS from "./util/Colors";
+import FONTS from "./util/Fonts";
 
 const InputComponent = ({
   onChangeText,
@@ -10,54 +11,86 @@ const InputComponent = ({
   keyboardType,
   icon,
   value,
+  colorText,
+  colorIcon,
 }: any) => {
+  
+  const textColor =
+    colorText === "white"
+      ? COLORS.white
+      : colorText === "gray"
+      ? COLORS.gray
+      : colorText === "grayT0_3"
+      ? COLORS.grayT0_3
+      : colorText === "primaryR"
+      ? COLORS.primaryR
+      : colorText === "primaryO"
+      ? COLORS.primaryO
+      : COLORS.primaryB;
+
+  const iconColor =
+    colorIcon === "white"
+      ? COLORS.white
+      : colorIcon === "gray"
+      ? COLORS.gray
+      : colorIcon === "grayT0_3"
+      ? COLORS.grayT0_3
+      : colorIcon === "primaryR"
+      ? COLORS.primaryR
+      : colorIcon === "primaryO"
+      ? COLORS.primaryO
+      : COLORS.primaryB;
+
   return (
     <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.inputs}
-        placeholder={placeholder}
-        keyboardType={keyboardType}
-        underlineColorAndroid="transparent"
-        onChangeText={onChangeText}
-        value={value}
-      />
-
-      <AntDesign style={styles.inputIcon} name={icon} />
+      <Text style={[FONTS.body, { color: textColor }]}>{placeholder}</Text>
+      <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <TextInput
+          style={[
+            styles.inputs,
+            { borderColor: iconColor, borderBottomWidth: 2 },
+          ]}
+          //placeholder={placeholder}
+          //placeholderTextColor={COLORS.gray}
+          keyboardType={keyboardType}
+          underlineColorAndroid="transparent"
+          onChangeText={onChangeText}
+          value={value}
+        />
+        <AntDesign
+          style={[styles.inputIcon, { color: iconColor }]}
+          name={icon}
+        />
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   inputContainer: {
-    backgroundColor: COLORS.white,
-    borderRadius: 10,
-    width: 350,
+    width: "100%",
     height: 45,
-    marginBottom: 20,
-    flexDirection: "row",
-    alignItems: "center",
-
-    shadowColor: COLORS.gray,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 15,
+    marginVertical: 20,
+    flexDirection: "column",
+    backgroundColor: "transparent",
+    marginLeft: 16,
+    //shadowColor: COLORS.gray,
+    //shadowOffset: {
+    //  width: 0,
+    //  height: 2,
+    //},
+    //shadowOpacity: 0.25,
+    //shadowRadius: 3.84,
+    //elevation: 15,
   },
   inputs: {
-    height: 45,
-    marginLeft: 16,
     flex: 1,
+    height: 45,
     fontFamily: "SpaceMono_700Bold",
     color: COLORS.gray,
   },
   inputIcon: {
-    width: 30,
-    height: 30,
-    marginRight: 15,
-    justifyContent: "center",
+    marginHorizontal: 15,
     fontSize: 25,
     color: COLORS.gray,
   },

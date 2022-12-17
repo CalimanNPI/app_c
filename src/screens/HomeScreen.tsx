@@ -1,69 +1,62 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React from "react";
 import {
-  Image,
   StyleSheet,
   View,
   ScrollView,
-  RefreshControl,
+  Text,
+  TouchableOpacity,
 } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 
 import Layout from "../components/Layout";
-import PublicityList from "../components/publications/PublicityList";
-import { getPublicity } from "../api/api";
+import PublicityList from "./publications/PublicityList";
 import COLORS from "../components/util/Colors";
+import FONTS from "../components/util/Fonts";
+import LocationScreen from "./screen/LocationScreen";
+import TitleComponent from "../components/TextTitleComponent";
+import MenusItems from "./cafeteria/CafeteriaMenu";
 
-const wait = (timeout: number) => {
-  return new Promise((resolve) => setTimeout(resolve, timeout));
-};
-
-const HomeScreen = () => {
-  const [publicitys, setPublicitys] = useState([]);
-  const [refreshing, setRefreshing] = useState(false);
-
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-    wait(2000).then(() => setRefreshing(false));
-  }, []);
-
-  const getPu = async () => {
-    const data = await getPublicity();
-    setPublicitys(data.data);
-  };
-
-  useEffect(() => {
-    getPu();
-  }, []);
-
+const HomeScreen = ({ navigation }: any) => {
   return (
-    <Layout>
-      <ScrollView
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-            colors={[COLORS.primaryR]}
-            progressBackgroundColor={COLORS.white}
-          />
-        }
-        style={styles.content}
-      >
-        <View style={styles.imageContent}>
-          <Image
-            source={require("../../assets/coyi/Panorama_CDC.png")}
-            resizeMode="cover"
-            style={{ width: "100%", height: 295 }}
-          />
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <Layout>
+        <View style={styles.contentHeader}>
+          <View style={{ flexDirection: "column" }}>
+            <Text
+              style={[FONTS.subTitle, { color: COLORS.gray, fontSize: 26 }]}
+            >
+              Bienvenido
+            </Text>
+            <Text style={[FONTS.body, { color: COLORS.primaryR }]}>
+              Centro Deportivo Coyoacán A.C.
+            </Text>
+          </View>
+
+          <TouchableOpacity onPress={() => navigation.openDrawer()}>
+            <AntDesign name="menu-fold" size={30} color={COLORS.primaryR} />
+          </TouchableOpacity>
         </View>
 
-        <View style={styles.bodyContent}>
-          <PublicityList item={publicitys} />
-          <PublicityList item={publicitys} />
-          <PublicityList item={publicitys} />
+        <PublicityList />
+
+        <View
+          style={{
+            flexDirection: "column",
+            justifyContent: "center",
+            marginBottom: 20,
+          }}
+        >
+          <TitleComponent text={"Consulta nuestros menús"} />
+          <MenusItems />
+          <View style={{ flexDirection: "row" }}>
+            {/* <EJJJS />
+            <EJJJS /> */}
+          </View>
         </View>
-      </ScrollView>
-    </Layout>
+
+        <LocationScreen />
+      </Layout>
+    </ScrollView>
   );
 };
 
@@ -72,12 +65,22 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
   },
-  imageContent: {
-    width: "100%",
-    height: 250,
-    position: "relative",
-    top: -20,
-    zIndex: -1,
+  contentHeader: {
+    flex: 1,
+    justifyContent: "space-around",
+    alignItems: "center",
+    flexDirection: "row",
+    marginVertical: 20,
+  },
+  btn: {
+    position: "absolute",
+    top: 10,
+    left: 10,
+    zIndex: 2,
+    //backgroundColor: "transparent",
+    backgroundColor: COLORS.grayT0_3,
+    borderRadius: 10,
+    padding: 10,
   },
   bodyContent: {
     flex: 1,

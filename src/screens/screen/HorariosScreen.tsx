@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, View, StyleSheet, FlatList } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 import COLORS from "../../components/util/Colors";
 import FONTS from "../../components/util/Fonts";
 import Layout from "../../components/Layout";
@@ -12,7 +13,7 @@ const HorariosScreen = () => {
       <FlatList
         data={horario}
         style={styles.eventList}
-        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
         keyExtractor={(item: any) => {
           return item.id;
         }}
@@ -26,7 +27,6 @@ const HorariosScreen = () => {
                 </Text>
               </View>
               <View style={styles.eventContent}>
-                
                 <Text style={[FONTS.body, { color: COLORS.primaryR }]}>
                   {item.openH} - {item.closeH}
                 </Text>
@@ -36,6 +36,10 @@ const HorariosScreen = () => {
                 <Text style={[FONTS.desc, { color: COLORS.gray }]}>
                   {item.desc ? item.desc : "No cuenta con una descripción."}
                 </Text>
+              </View>
+              <View style={styles.iconContent}>
+
+                <AntDesign name="QQ" size={50} color={"red"} />
               </View>
             </View>
           );
@@ -56,28 +60,16 @@ const styles = StyleSheet.create({
     color: COLORS.gray,
     fontFamily: "SpaceMono_700Bold",
   },
-
   eventList: {
     width: "100%",
   },
   eventBox: {
     padding: 10,
-    marginTop: 5,
-    marginBottom: 5,
+    marginHorizontal: 10,
+    marginVertical: 5,
     flexDirection: "row",
-  },
-  eventDate: {
-    flexDirection: "column",
-  },
-
-  eventContent: {
-    flex: 1,
-    flexDirection: "column",
-    alignItems: "flex-start",
-    marginLeft: 10,
-    backgroundColor: COLORS.white,
-    padding: 10,
     borderRadius: 10,
+    backgroundColor: COLORS.white,
     shadowColor: COLORS.gray,
     shadowOffset: {
       width: 0,
@@ -86,6 +78,21 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 8,
+  },
+  eventDate: {
+    flexDirection: "column",
+  },
+  eventContent: {
+    flex: 1,
+    flexDirection: "column",
+    alignItems: "flex-start",
+    marginLeft: 10,
+    padding: 10,
+  },
+  iconContent: {
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 

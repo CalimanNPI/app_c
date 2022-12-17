@@ -1,18 +1,21 @@
 import React, { useState } from "react";
-import { Text, StyleSheet, Dimensions, View } from "react-native";
+import { Text, StyleSheet, View, ScrollView } from "react-native";
 
 import Layout from "../../components/Layout";
 
 import { sendEmail } from "../../api/api";
 import ButtomComponent from "../../components/ButtomComponent";
-import BackgroundSvg from "../../components/BackgroundSvg";
 import COLORS from "../../components/util/Colors";
 import FONTS from "../../components/util/Fonts";
 import InputComponent from "../../components/InputComponent";
 import InputAreaComponent from "../../components/InputAreaComponent";
+import CenterSvgComponent from "../../components/svg/CenterSVG";
+import SvgComponent from "../../components/svg/ButtomNew";
+import ButtonBackComponent from "../../components/ButtomBackComponent";
 
-const { width } = Dimensions.get("screen");
-const MailScreen = () => {
+const MailScreen = ({ navigation }: any) => {
+  const [disable, setDisable] = useState<boolean>(false);
+
   const [email, setEmil] = useState({
     name: "",
     email: "",
@@ -21,8 +24,9 @@ const MailScreen = () => {
   });
 
   const sendEmailCDC = async () => {
+    setDisable(true);
     const data = await sendEmail(email);
-    alert(data);
+    setDisable(false);
   };
 
   const handleChange = (name: any, value: any) =>
@@ -30,13 +34,14 @@ const MailScreen = () => {
 
   return (
     <Layout>
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <BackgroundSvg style={styles.containerSVG} />
-
-        <View style={styles.container}>
-          <Text style={[FONTS.title, { color: COLORS.primaryR }]}>
-            Envia un correo
-          </Text>
+      <ButtonBackComponent
+        onPress={() => navigation.openDrawer()}
+        icon={"menu-fold"}
+      />
+      <CenterSvgComponent />
+      <View style={styles.container}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <Text style={[FONTS.title, styles.title]}>Envia un correo</Text>
 
           <InputComponent
             placeholder="Nombre"
@@ -44,20 +49,28 @@ const MailScreen = () => {
             icon="mail"
             value={email.name}
             onChangeText={(text: string) => handleChange("name", text)}
+            colorText={"white"}
+            colorIcon={"white"}
           />
+
           <InputComponent
             placeholder="Correo electrónico"
-            keyboardType={"default"}
+            keyboardType={"email-address"}
             icon="user"
             value={email.email}
             onChangeText={(text: string) => handleChange("email", text)}
+            colorText={"white"}
+            colorIcon={"white"}
           />
+
           <InputComponent
             placeholder="Clave de usuario"
-            keyboardType={"default"}
+            keyboardType={"numeric"}
             icon="key"
             value={email.userKey}
             onChangeText={(text: string) => handleChange("userKey", text)}
+            colorText={"white"}
+            colorIcon={"white"}
           />
 
           <InputAreaComponent
@@ -66,47 +79,41 @@ const MailScreen = () => {
             icon="message1"
             value={email.message}
             onChangeText={(text: string) => handleChange("message", text)}
+            colorText={"white"}
+            colorIcon={"white"}
           />
 
-          <ButtomComponent
-            onPress={sendEmailCDC}
-            type={"primaryR"}
-            size={"large"}
-            label={"Enviar"}
-          />
-        </View>
+          <View style={{ alignItems: "center" }}>
+            <ButtomComponent
+              onPress={sendEmailCDC}
+              type={"primaryR"}
+              size={"large"}
+              label={"Enviar"}
+              disabled={disable}
+            />
+          </View>
+        </ScrollView>
       </View>
+      <SvgComponent />
     </Layout>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: "column",
-    width: "90%",
-    backgroundColor: COLORS.white,
-
-    alignItems: "center",
-    justifyContent: "center",
+    width: "100%",
+    height: "100%",
+    backgroundColor: "transparent",
+    paddingHorizontal: 20,
     position: "absolute",
-    padding: 10,
-    borderRadius: 20,
-    shadowColor: COLORS.gray,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-
-    elevation: 5,
+    top: 0,
+    zIndex: 1,
   },
-  containerSVG: {
-    width: width,
-    justifyContent: "flex-start",
-    alignContent: "center",
-    position: "absolute",
+  title: {
+    color: COLORS.white,
+    marginVertical: 20,
+    textAlign: "center",
   },
 });
 

@@ -6,7 +6,8 @@ import {
   useWindowDimensions,
 } from "react-native";
 import PagerView from "react-native-pager-view";
-import { Feather as Icon } from "@expo/vector-icons";
+import { Feather as Icon, AntDesign } from "@expo/vector-icons";
+
 import FONTS from "./util/Fonts";
 import COLORS from "./util/Colors";
 
@@ -54,26 +55,35 @@ const Page = ({ backgroundColor, icon, title, desc }: any) => {
         backgroundColor,
       }}
     >
-      <Icon name={icon} size={70} color="white" />
+      <Icon name={icon} size={70} color={COLORS.primaryO} />
       <View style={{ marginTop: 16 }}>
-        <Text style={[FONTS.title, { color: COLORS.white }]}>{title}</Text>
+        <Text style={[FONTS.title, { color: COLORS.primaryO }]}>{title}</Text>
       </View>
       <View style={{ marginTop: 16, marginHorizontal: 20 }}>
-        <Text style={[FONTS.body, { color: COLORS.white, textAlign:"justify" }]}>{desc}</Text>
+        <Text
+          style={[FONTS.body, { color: COLORS.primaryO, textAlign: "justify" }]}
+        >
+          {desc}
+        </Text>
       </View>
     </View>
   );
 };
 
-const RoundedButton = ({ label, onPress }: any) => {
+const RoundedButton = ({ label, onPress, icon }: any) => {
   return (
     <TouchableOpacity
-      style={{ alignItems: "center", justifyContent: "center" }}
+      style={{
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "row",
+      }}
       onPress={onPress}
     >
-      <Text style={{ fontSize: 22, color: "white", fontWeight: "bold" }}>
+      <AntDesign name={icon} size={24} color={COLORS.primaryO} />
+      {/*<Text style={{ fontSize: 22, color: "white", fontWeight: "bold" }}>
         {label}
-      </Text>
+  </Text>*/}
     </TouchableOpacity>
   );
 };
@@ -114,9 +124,17 @@ const Footer = ({
         }}
       >
         {leftButtonLabel && (
-          <RoundedButton label={leftButtonLabel} onPress={leftButtonPress} />
+          <RoundedButton
+            label={leftButtonLabel}
+            onPress={leftButtonPress}
+            icon={"left"}
+          />
         )}
-        <RoundedButton label={rightButtonLabel} onPress={rightButtonPress} />
+        <RoundedButton
+          label={rightButtonLabel}
+          onPress={rightButtonPress}
+          icon={"right"}
+        />
       </View>
     </View>
   );

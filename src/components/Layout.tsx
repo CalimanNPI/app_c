@@ -13,7 +13,8 @@ const Layout = ({ children }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.primaryRLightT0_015,
+    backgroundColor: COLORS.white,
+    //backgroundColor: COLORS.primaryRLightT0_015,
   },
 });
 

@@ -1,8 +1,6 @@
 import React, { useRef } from "react";
 import { Text, View, StyleSheet, ScrollView, Image } from "react-native";
 import PagerView from "react-native-pager-view";
-
-import { AntDesign } from "@expo/vector-icons";
 import COLORS from "../../components/util/Colors";
 import FONTS from "../../components/util/Fonts";
 import Layout from "../../components/Layout";
@@ -12,8 +10,11 @@ import { P_DATA } from "@env";
 import { valores } from "../../components/util/data";
 
 import { Footer, Page } from "../../components/PagerViewComponent";
+import ButtonBackComponent from "../../components/ButtomBackComponent";
+import CenterSvgComponent from "../../components/svg/CenterSVG";
+import TopSvgComponent from "../../components/svg/TopSVG";
 
-const AboutScreen = () => {
+const AboutScreen = ({ navigation }) => {
   const pagerRef = useRef(null);
   const handlePageChange = (pageNumbre: any) => {
     //console.log(pageNumbre);
@@ -21,24 +22,27 @@ const AboutScreen = () => {
   };
 
   return (
-    <ScrollView>
+    <ScrollView style={{ backgroundColor: COLORS.white }}>
       <Layout>
+        <TopSvgComponent />
+        <ButtonBackComponent
+          onPress={() => navigation.openDrawer()}
+          icon={"menu-fold"}
+        />
+
         <View style={styles.container}>
-          <Image
-            style={styles.logo}
-            source={{
-              uri: P_DATA + "onboarding/3.png",
-            }}
-          />
-          <Text style={[FONTS.title, { color: COLORS.gray }]}>
+          <Text style={[FONTS.title, { color: COLORS.white }]}>
             Nuestra historia
           </Text>
-          <Text style={[FONTS.subTitle, { color: COLORS.primaryR }]}>
+          <Text style={[FONTS.subTitle, { color: COLORS.white }]}>
             Centro Deportivo Coyoacán A.C.
           </Text>
           <View style={styles.descriptionContent}>
             <Text
-              style={[FONTS.body, { color: COLORS.gray, textAlign: "justify" }]}
+              style={[
+                FONTS.body,
+                { color: COLORS.white, textAlign: "justify" },
+              ]}
             >
               Centro Deportivo Coyoacán, A.C. es una asociación civil, no
               lucrativa, constituida en 1977 por varias instituciones con el
@@ -46,11 +50,18 @@ const AboutScreen = () => {
               exclusivo de esparcimiento, desarrollo físico y mental.
             </Text>
           </View>
+          <Image
+            style={styles.logo}
+            source={{
+              uri: P_DATA + "onboarding/1.png",
+            }}
+          />
         </View>
 
         <PagerView
           style={{ flex: 1, height: 400 }}
           initialPage={0}
+          scrollEnabled={true}
           ref={pagerRef}
         >
           {valores.map((item, index) => {
@@ -59,13 +70,13 @@ const AboutScreen = () => {
                 {item["id"] == 1 ? (
                   <View style={{ flex: 1 }}>
                     <Page
-                      backgroundColor={COLORS.grayT0_3}
+                      backgroundColor={COLORS.white}
                       icon={item.icon}
                       title={item.title}
                       desc={item.desc}
                     />
                     <Footer
-                      backgroundColor={COLORS.primaryB}
+                      backgroundColor={COLORS.white}
                       rightButtonLabel="Próxima"
                       rightButtonPress={() => handlePageChange(item["id"])}
                     />
@@ -73,18 +84,18 @@ const AboutScreen = () => {
                 ) : (
                   <View style={{ flex: 1 }}>
                     <Page
-                      backgroundColor={COLORS.grayT0_3}
+                      backgroundColor={COLORS.white}
                       icon={item.icon}
                       title={item.title}
                       desc={item.desc}
                     />
                     <Footer
-                      backgroundColor={COLORS.primaryB}
+                      backgroundColor={COLORS.white}
                       rightButtonLabel="Próxima"
                       rightButtonPress={() => handlePageChange(item["id"])}
                       leftButtonLabel="Atrás"
                       leftButtonPress={() => {
-                        handlePageChange(item["id"]-2);
+                        handlePageChange(item["id"] - 2);
                       }}
                     />
                   </View>
@@ -102,8 +113,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: COLORS.white,
-    marginBottom: 10,
+    position: "absolute",
+    marginTop: 50,
   },
   logo: {
     width: 200,

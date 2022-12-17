@@ -21,7 +21,7 @@ const logout = async () => {
   const fields = { token: await getToken(), clave: await getClave() };
 
   const data = await axios.postForm(API + "/logout", fields);
-  console.log(data.data, "logout");
+  //console.log(data.data, "logout");
 
   if (data.data) {
     const keys = [
@@ -60,7 +60,7 @@ const setUsuarioAuth = async (usuario: any) => {
 
 const getUsuarioAuth = async () => {
   const data = await AsyncStorage.getItem("@usuario");
-  //console.log(!!data);
+  //console.log(!!data, "asasdadasd");
   return !!data;
 };
 
@@ -68,16 +68,19 @@ const getUsuarioInfo = async () => {
   const data = await AsyncStorage.getItem("@usuario");
   //console.log(data != null ? JSON.parse(data) : "");
   const usuario = data != null ? JSON.parse(data) : "";
-  console.log(JSON.stringify(usuario));
+  //console.log(JSON.stringify(usuario));
   await AsyncStorage.setItem("@mail", JSON.stringify(usuario.info[0]["mail"]));
+  await AsyncStorage.setItem("@phone", JSON.stringify(usuario.info[0]["celular"]));
   await AsyncStorage.setItem(
     "@clave",
     JSON.stringify(usuario.info[0]["clave"])
   );
-  await AsyncStorage.setItem(
-    "@nombre",
-    JSON.stringify(usuario.usuario[0]["nombre"])
-  );
+
+  const nombre =
+    usuario.status == "A"
+      ? usuario.usuario[0]["ncomple"].trim()
+      : usuario.usuario[0]["nombre"].trim();
+  await AsyncStorage.setItem("@nombre", JSON.stringify(nombre));
 
   await AsyncStorage.setItem("@status", JSON.stringify(usuario.status));
 
@@ -98,6 +101,12 @@ const getClave = async () => {
 
 const getMail = async () => {
   const mail = await AsyncStorage.getItem("@mail");
+  //console.log(mail != null ? JSON.parse(mail) : "contacto@cdcac.com");
+  return mail != null ? JSON.parse(mail) : "contacto@cdcac.com";
+};
+
+const getPhone = async () => {
+  const mail = await AsyncStorage.getItem("@phone");
   //console.log(mail != null ? JSON.parse(mail) : "contacto@cdcac.com");
   return mail != null ? JSON.parse(mail) : "contacto@cdcac.com";
 };
@@ -126,7 +135,13 @@ const getProf = async (clave: any) => {
     clave,
   };
   const data = await axios.postForm(API + "/acti/prof", fields);
-  console.log(data.data);
+  //console.log(data.data);
+  return data.data;
+};
+
+const updateInfoUsuario = async (fields: object) => {
+  const data = await axios.postForm(API + "/usuario", fields);
+  //console.log(data.data);
   return data.data;
 };
 
@@ -145,4 +160,6 @@ export {
   getToken,
   getProfFoto,
   getProf,
+  getPhone, 
+  updateInfoUsuario,
 };

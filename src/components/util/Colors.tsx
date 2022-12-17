@@ -4,6 +4,7 @@ const COLORS = {
   primaryRT: "rgba(255, 59, 48, 0.2)",
   primaryG: "rgb(48, 255, 162)",
   primaryB: "rgb(48, 141, 255)",
+  primaryO: "rgb(255, 163, 48)",
 
   /** Tones */
   primaryRDark: "rgb(197, 88, 82)",

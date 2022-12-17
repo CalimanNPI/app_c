@@ -12,6 +12,7 @@ import Layout from "../../components/Layout";
 import FONTS from "../../components/util/Fonts";
 
 import { reglamentos } from "../../components/util/data";
+import COLORS from "../../components/util/Colors";
 
 const ReglamentoScreen = () => {
   const _handleOpen = (pdf: string) => {
@@ -35,7 +36,7 @@ const ReglamentoScreen = () => {
                     <View style={styles.nameContainer}>
                       <Text
                         style={[FONTS.body, { textAlign: "left" }]}
-                        numberOfLines={3}
+                        numberOfLines={4}
                       >
                         {item.title}
                       </Text>
@@ -55,8 +56,8 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     alignItems: "center",
-    borderColor: "#DCDCDC",
-    backgroundColor: "#fff",
+    borderColor: COLORS.grayT0_3,
+    backgroundColor:  COLORS.white,
     borderBottomWidth: 1,
     padding: 10,
     paddingRight: 15,

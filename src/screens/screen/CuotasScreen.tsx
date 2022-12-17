@@ -9,12 +9,17 @@ import { cuotas } from "../../components/util/data";
 
 const renderItem = ({ item }: any) => {
   return (
-    <View style={[styles.card, { borderColor: COLORS.primaryB }]}>
-      
-      <AntDesign name="checkcircle" size={24} color={COLORS.primaryB} />
+    <View style={[styles.card, { borderColor: COLORS.primaryR }]}>
+      {item.cost && (
+        <AntDesign name="checkcircle" size={24} color={COLORS.primaryR} />
+      )}
       <View style={styles.cardContent}>
-        <Text style={[styles.description]}>{item.name}</Text>
-        <Text style={styles.date}>{item.cost ? `$ ${item.cost} MXN` : ""}</Text>
+        <Text style={[FONTS.subTitle, { color: COLORS.primaryR }]}>
+          {item.name}
+        </Text>
+        <Text style={[FONTS.desc, { marginTop: 7 }]}>
+          {item.cost ? `$ ${item.cost} MXN` : ""}
+        </Text>
       </View>
     </View>
   );
@@ -46,14 +51,6 @@ const styles = StyleSheet.create({
   },
 
   card: {
-    shadowColor: "#00000021",
-    shadowOffset: {
-      width: 0,
-      height: 6,
-    },
-    shadowOpacity: 0.37,
-    shadowRadius: 7.49,
-    elevation: 12,
     marginVertical: 10,
     marginHorizontal: 20,
     backgroundColor: "white",
@@ -62,19 +59,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     borderLeftWidth: 6,
-  },
 
-  description: {
-    fontSize: 18,
-    flex: 1,
-    color: COLORS.primaryB,
-    fontWeight: "bold",
-  },
-  date: {
-    fontSize: 14,
-    flex: 1,
-    color: COLORS.gray,
-    marginTop: 5,
+    shadowColor: COLORS.gray,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 8,
   },
 });
 
